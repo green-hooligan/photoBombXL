@@ -75,7 +75,7 @@
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(87, 23);
             this.btnLoad.TabIndex = 2;
-            this.btnLoad.Text = "Load Profiles";
+            this.btnLoad.Text = "refresh";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 

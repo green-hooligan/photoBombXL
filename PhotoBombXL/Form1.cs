@@ -18,10 +18,30 @@ namespace PhotoBombXL
             loadProfilesFromFile();
         }
 
+        // this populates the list box with profiles from the txt file
         public void loadProfilesFromFile()
         {
-            String profileData = System.IO.File.ReadAllText(Application.UserAppDataPath + "\\appdata.txt");
-            MessageBox.Show(profileData);
+            MessageBox.Show(Application.UserAppDataPath + "\\appdata.txt");
+            if(!File.Exists(Application.UserAppDataPath + "\\appdata.txt"))
+            {
+                return;
+            }
+            String data;
+            try
+            {
+                data = System.IO.File.ReadAllText(Application.UserAppDataPath + "\\appdata.txt");
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show("An error occurred loading the profiles: " + e.ToString());
+                return;
+            }
+            String[] profileData =  data.Split('+');
+            for (int i = 0; i < profileData.Length - 1; i+=8)
+            {
+                Profile p = new Profile(profileData[i + 0], Convert.ToInt32(profileData[i + 1]), Convert.ToInt32(profileData[i + 2]), Convert.ToInt32(profileData[i + 3]), Convert.ToInt32(profileData[i + 4]), Convert.ToInt32(profileData[i + 5]), Convert.ToInt32(profileData[i + 6]), true);
+                lstProfileList.Items.Add(p);
+            }
         }
 
         public void saveProfilesToFile()
@@ -40,14 +60,14 @@ namespace PhotoBombXL
             // getting profiles from list
             for (int i = 0; i < numOfProfiles; i++)
             {
-                profileData[i] += ((Profile)lstProfileList.Items[i]).name + " ";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).heightInPixels + " ";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).widthInPixels + " ";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).fileType + " ";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).fileSize + " ";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).aspectHeight + " ";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).aspectWidth + " ";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).isExifMaintained + " ";
+                profileData[i] += ((Profile)lstProfileList.Items[i]).name + "+";
+                profileData[i] += ((Profile)lstProfileList.Items[i]).heightInPixels + "+";
+                profileData[i] += ((Profile)lstProfileList.Items[i]).widthInPixels + "+";
+                profileData[i] += ((Profile)lstProfileList.Items[i]).fileType + "+";
+                profileData[i] += ((Profile)lstProfileList.Items[i]).fileSize + "+";
+                profileData[i] += ((Profile)lstProfileList.Items[i]).aspectHeight + "+";
+                profileData[i] += ((Profile)lstProfileList.Items[i]).aspectWidth + "+";
+                profileData[i] += ((Profile)lstProfileList.Items[i]).isExifMaintained + "+";
             }
 
             try
@@ -58,8 +78,7 @@ namespace PhotoBombXL
             }
             catch (IOException e)
             {
-                // Inform the user that an error occurred.
-                MessageBox.Show("An error occurred while attempting to show the application. The error is:" + e.ToString());
+                MessageBox.Show("An error occurred saving the profiles: " + e.ToString());
             }
         }
 
@@ -81,6 +100,7 @@ namespace PhotoBombXL
         {
             Profile p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), Convert.ToInt32(txtFileType.Text), Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), true);
             lstProfileList.Items.Add(p);
+            
         }
     }
 }
