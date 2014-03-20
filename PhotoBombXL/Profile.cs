@@ -15,5 +15,17 @@ namespace PhotoBombXL
         public int aspectHeight { get; set; }
         public int aspectWidth { get; set; }
         public bool isExifMaintained { get; set; }
+
+        public Profile(String name, int heightInPixels, int widthInPixels, int fileType, int fileSize, int aspectHeight, int aspectWidth, bool isExifMaintained)
+        {
+            this.name = name;
+            this.heightInPixels = heightInPixels;
+            this.widthInPixels = widthInPixels;
+            this.fileType = fileType;
+            this.fileSize = fileSize;
+            this.aspectHeight = aspectHeight;
+            this.aspectWidth = aspectWidth;
+            this.isExifMaintained = isExifMaintained;
+        }
     }
 }
