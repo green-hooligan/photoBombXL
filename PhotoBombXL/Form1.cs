@@ -98,6 +98,7 @@ namespace PhotoBombXL
 
         private void btnCreateProfile_Click(object sender, EventArgs e)
         {
+            //garrett sucks
             Profile p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), Convert.ToInt32(txtFileType.Text), Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), true);
             lstProfileList.Items.Add(p);
             
