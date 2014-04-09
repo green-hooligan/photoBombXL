@@ -57,11 +57,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbFileType = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnBrowseSave = new System.Windows.Forms.Button();
             this.txtSaveDirectory = new System.Windows.Forms.TextBox();
             this.chkDefaultSave = new System.Windows.Forms.CheckBox();
-            this.cmbFileType = new System.Windows.Forms.ComboBox();
             this.profileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).BeginInit();
@@ -71,10 +71,11 @@
             // 
             this.lstProfileList.BackColor = System.Drawing.SystemColors.Window;
             this.lstProfileList.FormattingEnabled = true;
-            this.lstProfileList.Location = new System.Drawing.Point(280, 29);
+            this.lstProfileList.Location = new System.Drawing.Point(17, 130);
             this.lstProfileList.Name = "lstProfileList";
-            this.lstProfileList.Size = new System.Drawing.Size(252, 342);
+            this.lstProfileList.Size = new System.Drawing.Size(248, 238);
             this.lstProfileList.TabIndex = 0;
+            this.lstProfileList.SelectedIndexChanged += new System.EventHandler(this.lstProfileList_SelectedIndexChanged);
             // 
             // btnSave
             // 
@@ -274,9 +275,9 @@
             // 
             this.listBox1.BackColor = System.Drawing.SystemColors.Window;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(15, 133);
+            this.listBox1.Location = new System.Drawing.Point(282, 39);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(250, 238);
+            this.listBox1.Size = new System.Drawing.Size(250, 329);
             this.listBox1.TabIndex = 24;
             // 
             // button2
@@ -323,6 +324,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // cmbFileType
+            // 
+            this.cmbFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFileType.FormattingEnabled = true;
+            this.cmbFileType.Location = new System.Drawing.Point(87, 103);
+            this.cmbFileType.Name = "cmbFileType";
+            this.cmbFileType.Size = new System.Drawing.Size(85, 21);
+            this.cmbFileType.TabIndex = 20;
+            // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(12, 406);
@@ -356,15 +366,6 @@
             this.chkDefaultSave.Text = "Use default save";
             this.chkDefaultSave.UseVisualStyleBackColor = true;
             this.chkDefaultSave.CheckedChanged += new System.EventHandler(this.chkDefaultSave_CheckedChanged);
-            // 
-            // cmbFileType
-            // 
-            this.cmbFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFileType.FormattingEnabled = true;
-            this.cmbFileType.Location = new System.Drawing.Point(87, 103);
-            this.cmbFileType.Name = "cmbFileType";
-            this.cmbFileType.Size = new System.Drawing.Size(85, 21);
-            this.cmbFileType.TabIndex = 20;
             // 
             // profileBindingSource
             // 

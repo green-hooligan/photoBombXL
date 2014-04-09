@@ -17,6 +17,7 @@ namespace PhotoBombXL
             InitializeComponent();
             loadProfilesFromFile();
             cmbFileType.DataSource = Enum.GetValues(typeof(Profile.fileTypes));
+            lstProfileList.DisplayMember = "name";
         }
 
         // this populates the list box with profiles from the txt file
@@ -118,6 +119,18 @@ namespace PhotoBombXL
                 btnBrowseSave.Enabled = true;
                 txtSaveDirectory.Enabled = true;
             }
+        }
+
+        private void lstProfileList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtProfileName.Text = ((Profile)lstProfileList.SelectedItem).name;
+            txtHeight.Text = ((Profile)lstProfileList.SelectedItem).heightInPixels.ToString();
+            txtWidth.Text = ((Profile)lstProfileList.SelectedItem).widthInPixels.ToString();
+            cmbFileType.Text = ((Profile)lstProfileList.SelectedItem).fileType.ToString();
+            txtFileSize.Text = ((Profile)lstProfileList.SelectedItem).fileSize.ToString();
+            txtAspectHeight.Text = ((Profile)lstProfileList.SelectedItem).aspectHeight.ToString();
+            txtAspectWidth.Text = ((Profile)lstProfileList.SelectedItem).aspectWidth.ToString();
+            txtExifMaintained.Text = ((Profile)lstProfileList.SelectedItem).isExifMaintained.ToString();
         }
     }
 }
