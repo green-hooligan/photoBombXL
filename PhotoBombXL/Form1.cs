@@ -16,6 +16,7 @@ namespace PhotoBombXL
         {
             InitializeComponent();
             loadProfilesFromFile();
+            cmbFileType.DataSource = Enum.GetValues(typeof(Profile.fileTypes));
         }
 
         // this populates the list box with profiles from the txt file
@@ -39,7 +40,8 @@ namespace PhotoBombXL
             String[] profileData =  data.Split('+');
             for (int i = 0; i < profileData.Length - 1; i+=8)
             {
-                Profile p = new Profile(profileData[i + 0], Convert.ToInt32(profileData[i + 1]), Convert.ToInt32(profileData[i + 2]), Convert.ToInt32(profileData[i + 3]), Convert.ToInt32(profileData[i + 4]), Convert.ToInt32(profileData[i + 5]), Convert.ToInt32(profileData[i + 6]), true);
+                Profile.fileTypes fileType = (Profile.fileTypes)Enum.Parse(typeof(Profile.fileTypes), profileData[i + 3]);
+                Profile p = new Profile(profileData[i + 0], Convert.ToInt32(profileData[i + 1]), Convert.ToInt32(profileData[i + 2]), fileType, Convert.ToInt32(profileData[i + 4]), Convert.ToInt32(profileData[i + 5]), Convert.ToInt32(profileData[i + 6]), true);
                 lstProfileList.Items.Add(p);
             }
         }
@@ -98,10 +100,24 @@ namespace PhotoBombXL
 
         private void btnCreateProfile_Click(object sender, EventArgs e)
         {
-            //garrett sucks
-            Profile p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), Convert.ToInt32(txtFileType.Text), Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), true);
+            Profile.fileTypes fileType = (Profile.fileTypes)Enum.Parse(typeof(Profile.fileTypes), cmbFileType.Text);
+            Profile p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), true);
             lstProfileList.Items.Add(p);
             
+        }
+
+        private void chkDefaultSave_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkDefaultSave.Checked == true)
+            {
+                btnBrowseSave.Enabled = false;
+                txtSaveDirectory.Enabled = false;
+            }
+            else
+            {
+                btnBrowseSave.Enabled = true;
+                txtSaveDirectory.Enabled = true;
+            }
         }
     }
 }

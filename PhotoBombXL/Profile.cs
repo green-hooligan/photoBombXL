@@ -7,16 +7,25 @@ namespace PhotoBombXL
 {
     class Profile
     {
+        public enum fileTypes
+        {
+            JPG,
+            RAW,
+            GIF,
+            PNG,
+            BMP
+        };
+
         public string name { get; set; }
         public int heightInPixels { get; set; }
         public int widthInPixels { get; set; }
-        public int fileType { get; set; }
+        public fileTypes fileType { get; set; }
         public int fileSize { get; set; }
         public int aspectHeight { get; set; }
         public int aspectWidth { get; set; }
         public bool isExifMaintained { get; set; }
 
-        public Profile(String name, int heightInPixels, int widthInPixels, int fileType, int fileSize, int aspectHeight, int aspectWidth, bool isExifMaintained)
+        public Profile(String name, int heightInPixels, int widthInPixels, fileTypes fileType, int fileSize, int aspectHeight, int aspectWidth, bool isExifMaintained)
         {
             this.name = name;
             this.heightInPixels = heightInPixels;

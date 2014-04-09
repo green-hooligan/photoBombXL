@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lstProfileList = new System.Windows.Forms.ListBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
@@ -42,26 +43,42 @@
             this.lblAspectWidth = new System.Windows.Forms.Label();
             this.txtHeight = new System.Windows.Forms.TextBox();
             this.txtWidth = new System.Windows.Forms.TextBox();
-            this.txtFileType = new System.Windows.Forms.TextBox();
             this.txtFileSize = new System.Windows.Forms.TextBox();
             this.txtAspectHeight = new System.Windows.Forms.TextBox();
             this.txtAspectWidth = new System.Windows.Forms.TextBox();
             this.lblExifMaintained = new System.Windows.Forms.Label();
             this.txtExifMaintained = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSelectDirectory = new System.Windows.Forms.TextBox();
+            this.btnBrowseSelect = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnBrowseSave = new System.Windows.Forms.Button();
+            this.txtSaveDirectory = new System.Windows.Forms.TextBox();
+            this.chkDefaultSave = new System.Windows.Forms.CheckBox();
+            this.cmbFileType = new System.Windows.Forms.ComboBox();
+            this.profileBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lstProfileList
             // 
             this.lstProfileList.BackColor = System.Drawing.SystemColors.Window;
             this.lstProfileList.FormattingEnabled = true;
-            this.lstProfileList.Location = new System.Drawing.Point(274, 92);
+            this.lstProfileList.Location = new System.Drawing.Point(280, 29);
             this.lstProfileList.Name = "lstProfileList";
-            this.lstProfileList.Size = new System.Drawing.Size(180, 225);
+            this.lstProfileList.Size = new System.Drawing.Size(252, 342);
             this.lstProfileList.TabIndex = 0;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(274, 323);
+            this.btnSave.Location = new System.Drawing.Point(281, 377);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(87, 23);
             this.btnSave.TabIndex = 1;
@@ -71,7 +88,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(367, 323);
+            this.btnLoad.Location = new System.Drawing.Point(445, 377);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(87, 23);
             this.btnLoad.TabIndex = 2;
@@ -81,7 +98,7 @@
             // 
             // btnCreateProfile
             // 
-            this.btnCreateProfile.Location = new System.Drawing.Point(510, 322);
+            this.btnCreateProfile.Location = new System.Drawing.Point(45, 234);
             this.btnCreateProfile.Name = "btnCreateProfile";
             this.btnCreateProfile.Size = new System.Drawing.Size(103, 23);
             this.btnCreateProfile.TabIndex = 3;
@@ -92,7 +109,7 @@
             // lblProfileName
             // 
             this.lblProfileName.AutoSize = true;
-            this.lblProfileName.Location = new System.Drawing.Point(470, 92);
+            this.lblProfileName.Location = new System.Drawing.Point(6, 26);
             this.lblProfileName.Name = "lblProfileName";
             this.lblProfileName.Size = new System.Drawing.Size(67, 13);
             this.lblProfileName.TabIndex = 4;
@@ -100,7 +117,7 @@
             // 
             // txtProfileName
             // 
-            this.txtProfileName.Location = new System.Drawing.Point(550, 92);
+            this.txtProfileName.Location = new System.Drawing.Point(86, 26);
             this.txtProfileName.Name = "txtProfileName";
             this.txtProfileName.Size = new System.Drawing.Size(85, 20);
             this.txtProfileName.TabIndex = 5;
@@ -108,7 +125,7 @@
             // lblHeight
             // 
             this.lblHeight.AutoSize = true;
-            this.lblHeight.Location = new System.Drawing.Point(470, 126);
+            this.lblHeight.Location = new System.Drawing.Point(6, 52);
             this.lblHeight.Name = "lblHeight";
             this.lblHeight.Size = new System.Drawing.Size(38, 13);
             this.lblHeight.TabIndex = 6;
@@ -117,7 +134,7 @@
             // lblWidth
             // 
             this.lblWidth.AutoSize = true;
-            this.lblWidth.Location = new System.Drawing.Point(470, 158);
+            this.lblWidth.Location = new System.Drawing.Point(6, 78);
             this.lblWidth.Name = "lblWidth";
             this.lblWidth.Size = new System.Drawing.Size(35, 13);
             this.lblWidth.TabIndex = 7;
@@ -126,7 +143,7 @@
             // lblFileType
             // 
             this.lblFileType.AutoSize = true;
-            this.lblFileType.Location = new System.Drawing.Point(470, 186);
+            this.lblFileType.Location = new System.Drawing.Point(6, 104);
             this.lblFileType.Name = "lblFileType";
             this.lblFileType.Size = new System.Drawing.Size(50, 13);
             this.lblFileType.TabIndex = 8;
@@ -135,7 +152,7 @@
             // lblSize
             // 
             this.lblSize.AutoSize = true;
-            this.lblSize.Location = new System.Drawing.Point(470, 214);
+            this.lblSize.Location = new System.Drawing.Point(6, 130);
             this.lblSize.Name = "lblSize";
             this.lblSize.Size = new System.Drawing.Size(46, 13);
             this.lblSize.TabIndex = 9;
@@ -144,7 +161,7 @@
             // lblAspectHeight
             // 
             this.lblAspectHeight.AutoSize = true;
-            this.lblAspectHeight.Location = new System.Drawing.Point(470, 245);
+            this.lblAspectHeight.Location = new System.Drawing.Point(6, 156);
             this.lblAspectHeight.Name = "lblAspectHeight";
             this.lblAspectHeight.Size = new System.Drawing.Size(74, 13);
             this.lblAspectHeight.TabIndex = 10;
@@ -153,7 +170,7 @@
             // lblAspectWidth
             // 
             this.lblAspectWidth.AutoSize = true;
-            this.lblAspectWidth.Location = new System.Drawing.Point(470, 271);
+            this.lblAspectWidth.Location = new System.Drawing.Point(6, 182);
             this.lblAspectWidth.Name = "lblAspectWidth";
             this.lblAspectWidth.Size = new System.Drawing.Size(71, 13);
             this.lblAspectWidth.TabIndex = 11;
@@ -161,42 +178,35 @@
             // 
             // txtHeight
             // 
-            this.txtHeight.Location = new System.Drawing.Point(551, 126);
+            this.txtHeight.Location = new System.Drawing.Point(87, 52);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.Size = new System.Drawing.Size(85, 20);
             this.txtHeight.TabIndex = 12;
             // 
             // txtWidth
             // 
-            this.txtWidth.Location = new System.Drawing.Point(551, 160);
+            this.txtWidth.Location = new System.Drawing.Point(87, 78);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(85, 20);
             this.txtWidth.TabIndex = 13;
             // 
-            // txtFileType
-            // 
-            this.txtFileType.Location = new System.Drawing.Point(550, 186);
-            this.txtFileType.Name = "txtFileType";
-            this.txtFileType.Size = new System.Drawing.Size(85, 20);
-            this.txtFileType.TabIndex = 14;
-            // 
             // txtFileSize
             // 
-            this.txtFileSize.Location = new System.Drawing.Point(550, 214);
+            this.txtFileSize.Location = new System.Drawing.Point(87, 130);
             this.txtFileSize.Name = "txtFileSize";
             this.txtFileSize.Size = new System.Drawing.Size(85, 20);
             this.txtFileSize.TabIndex = 15;
             // 
             // txtAspectHeight
             // 
-            this.txtAspectHeight.Location = new System.Drawing.Point(550, 245);
+            this.txtAspectHeight.Location = new System.Drawing.Point(87, 156);
             this.txtAspectHeight.Name = "txtAspectHeight";
             this.txtAspectHeight.Size = new System.Drawing.Size(85, 20);
             this.txtAspectHeight.TabIndex = 16;
             // 
             // txtAspectWidth
             // 
-            this.txtAspectWidth.Location = new System.Drawing.Point(550, 271);
+            this.txtAspectWidth.Location = new System.Drawing.Point(87, 182);
             this.txtAspectWidth.Name = "txtAspectWidth";
             this.txtAspectWidth.Size = new System.Drawing.Size(85, 20);
             this.txtAspectWidth.TabIndex = 17;
@@ -204,7 +214,7 @@
             // lblExifMaintained
             // 
             this.lblExifMaintained.AutoSize = true;
-            this.lblExifMaintained.Location = new System.Drawing.Point(470, 300);
+            this.lblExifMaintained.Location = new System.Drawing.Point(6, 208);
             this.lblExifMaintained.Name = "lblExifMaintained";
             this.lblExifMaintained.Size = new System.Drawing.Size(76, 13);
             this.lblExifMaintained.TabIndex = 18;
@@ -212,38 +222,180 @@
             // 
             // txtExifMaintained
             // 
-            this.txtExifMaintained.Location = new System.Drawing.Point(550, 300);
+            this.txtExifMaintained.Location = new System.Drawing.Point(86, 208);
             this.txtExifMaintained.Name = "txtExifMaintained";
             this.txtExifMaintained.Size = new System.Drawing.Size(85, 20);
             this.txtExifMaintained.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Select Directory";
+            // 
+            // txtSelectDirectory
+            // 
+            this.txtSelectDirectory.Location = new System.Drawing.Point(12, 29);
+            this.txtSelectDirectory.Name = "txtSelectDirectory";
+            this.txtSelectDirectory.Size = new System.Drawing.Size(176, 20);
+            this.txtSelectDirectory.TabIndex = 21;
+            // 
+            // btnBrowseSelect
+            // 
+            this.btnBrowseSelect.Location = new System.Drawing.Point(194, 29);
+            this.btnBrowseSelect.Name = "btnBrowseSelect";
+            this.btnBrowseSelect.Size = new System.Drawing.Size(74, 23);
+            this.btnBrowseSelect.TabIndex = 22;
+            this.btnBrowseSelect.Text = "Browse";
+            this.btnBrowseSelect.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(274, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Selected Directory";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Save Directory";
+            // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(15, 133);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(250, 238);
+            this.listBox1.TabIndex = 24;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(178, 377);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(87, 23);
+            this.button2.TabIndex = 27;
+            this.button2.Text = "refresh";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(16, 377);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(87, 23);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "Save Profiles";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cmbFileType);
+            this.groupBox1.Controls.Add(this.lblProfileName);
+            this.groupBox1.Controls.Add(this.btnCreateProfile);
+            this.groupBox1.Controls.Add(this.txtProfileName);
+            this.groupBox1.Controls.Add(this.lblHeight);
+            this.groupBox1.Controls.Add(this.lblWidth);
+            this.groupBox1.Controls.Add(this.lblFileType);
+            this.groupBox1.Controls.Add(this.lblSize);
+            this.groupBox1.Controls.Add(this.lblAspectHeight);
+            this.groupBox1.Controls.Add(this.lblAspectWidth);
+            this.groupBox1.Controls.Add(this.txtExifMaintained);
+            this.groupBox1.Controls.Add(this.txtHeight);
+            this.groupBox1.Controls.Add(this.lblExifMaintained);
+            this.groupBox1.Controls.Add(this.txtWidth);
+            this.groupBox1.Controls.Add(this.txtAspectWidth);
+            this.groupBox1.Controls.Add(this.txtAspectHeight);
+            this.groupBox1.Controls.Add(this.txtFileSize);
+            this.groupBox1.Location = new System.Drawing.Point(548, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(293, 265);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 406);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(829, 23);
+            this.progressBar1.TabIndex = 29;
+            // 
+            // btnBrowseSave
+            // 
+            this.btnBrowseSave.Location = new System.Drawing.Point(194, 81);
+            this.btnBrowseSave.Name = "btnBrowseSave";
+            this.btnBrowseSave.Size = new System.Drawing.Size(74, 23);
+            this.btnBrowseSave.TabIndex = 31;
+            this.btnBrowseSave.Text = "Browse";
+            this.btnBrowseSave.UseVisualStyleBackColor = true;
+            // 
+            // txtSaveDirectory
+            // 
+            this.txtSaveDirectory.Location = new System.Drawing.Point(12, 81);
+            this.txtSaveDirectory.Name = "txtSaveDirectory";
+            this.txtSaveDirectory.Size = new System.Drawing.Size(176, 20);
+            this.txtSaveDirectory.TabIndex = 30;
+            // 
+            // chkDefaultSave
+            // 
+            this.chkDefaultSave.AutoSize = true;
+            this.chkDefaultSave.Location = new System.Drawing.Point(16, 107);
+            this.chkDefaultSave.Name = "chkDefaultSave";
+            this.chkDefaultSave.Size = new System.Drawing.Size(106, 17);
+            this.chkDefaultSave.TabIndex = 32;
+            this.chkDefaultSave.Text = "Use default save";
+            this.chkDefaultSave.UseVisualStyleBackColor = true;
+            this.chkDefaultSave.CheckedChanged += new System.EventHandler(this.chkDefaultSave_CheckedChanged);
+            // 
+            // cmbFileType
+            // 
+            this.cmbFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFileType.FormattingEnabled = true;
+            this.cmbFileType.Location = new System.Drawing.Point(87, 103);
+            this.cmbFileType.Name = "cmbFileType";
+            this.cmbFileType.Size = new System.Drawing.Size(85, 21);
+            this.cmbFileType.TabIndex = 20;
+            // 
+            // profileBindingSource
+            // 
+            this.profileBindingSource.DataSource = typeof(PhotoBombXL.Profile);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 458);
-            this.Controls.Add(this.txtExifMaintained);
-            this.Controls.Add(this.lblExifMaintained);
-            this.Controls.Add(this.txtAspectWidth);
-            this.Controls.Add(this.txtAspectHeight);
-            this.Controls.Add(this.txtFileSize);
-            this.Controls.Add(this.txtFileType);
-            this.Controls.Add(this.txtWidth);
-            this.Controls.Add(this.txtHeight);
-            this.Controls.Add(this.lblAspectWidth);
-            this.Controls.Add(this.lblAspectHeight);
-            this.Controls.Add(this.lblSize);
-            this.Controls.Add(this.lblFileType);
-            this.Controls.Add(this.lblWidth);
-            this.Controls.Add(this.lblHeight);
-            this.Controls.Add(this.txtProfileName);
-            this.Controls.Add(this.lblProfileName);
-            this.Controls.Add(this.btnCreateProfile);
+            this.ClientSize = new System.Drawing.Size(853, 441);
+            this.Controls.Add(this.chkDefaultSave);
+            this.Controls.Add(this.btnBrowseSave);
+            this.Controls.Add(this.txtSaveDirectory);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnBrowseSelect);
+            this.Controls.Add(this.txtSelectDirectory);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lstProfileList);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Photo Bomber XL";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,12 +417,26 @@
         private System.Windows.Forms.Label lblAspectWidth;
         private System.Windows.Forms.TextBox txtHeight;
         private System.Windows.Forms.TextBox txtWidth;
-        private System.Windows.Forms.TextBox txtFileType;
         private System.Windows.Forms.TextBox txtFileSize;
         private System.Windows.Forms.TextBox txtAspectHeight;
         private System.Windows.Forms.TextBox txtAspectWidth;
         private System.Windows.Forms.Label lblExifMaintained;
         private System.Windows.Forms.TextBox txtExifMaintained;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSelectDirectory;
+        private System.Windows.Forms.Button btnBrowseSelect;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button btnBrowseSave;
+        private System.Windows.Forms.TextBox txtSaveDirectory;
+        private System.Windows.Forms.CheckBox chkDefaultSave;
+        private System.Windows.Forms.ComboBox cmbFileType;
+        private System.Windows.Forms.BindingSource profileBindingSource;
     }
 }
 
