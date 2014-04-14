@@ -59,8 +59,10 @@
             this.chkDefaultSave = new System.Windows.Forms.CheckBox();
             this.btnDeleteProfile = new System.Windows.Forms.Button();
             this.cmbExifMaintained = new System.Windows.Forms.ComboBox();
+            this.pctrPreviewImage = new System.Windows.Forms.PictureBox();
             this.profileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctrPreviewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -248,8 +250,9 @@
             this.lstFilesInDirList.FormattingEnabled = true;
             this.lstFilesInDirList.Location = new System.Drawing.Point(282, 39);
             this.lstFilesInDirList.Name = "lstFilesInDirList";
-            this.lstFilesInDirList.Size = new System.Drawing.Size(250, 329);
+            this.lstFilesInDirList.Size = new System.Drawing.Size(250, 238);
             this.lstFilesInDirList.TabIndex = 24;
+            this.lstFilesInDirList.SelectedIndexChanged += new System.EventHandler(this.lstFilesInDirList_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -340,6 +343,15 @@
             this.cmbExifMaintained.Size = new System.Drawing.Size(85, 21);
             this.cmbExifMaintained.TabIndex = 34;
             // 
+            // pctrPreviewImage
+            // 
+            this.pctrPreviewImage.Location = new System.Drawing.Point(282, 283);
+            this.pctrPreviewImage.Name = "pctrPreviewImage";
+            this.pctrPreviewImage.Size = new System.Drawing.Size(161, 114);
+            this.pctrPreviewImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctrPreviewImage.TabIndex = 34;
+            this.pctrPreviewImage.TabStop = false;
+            // 
             // profileBindingSource
             // 
             this.profileBindingSource.DataSource = typeof(PhotoBombXL.Profile);
@@ -349,6 +361,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 441);
+            this.Controls.Add(this.pctrPreviewImage);
             this.Controls.Add(this.btnDeleteProfile);
             this.Controls.Add(this.chkDefaultSave);
             this.Controls.Add(this.btnBrowseSave);
@@ -366,6 +379,7 @@
             this.Text = "Photo Bomber XL";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctrPreviewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -405,6 +419,7 @@
         private System.Windows.Forms.BindingSource profileBindingSource;
         private System.Windows.Forms.Button btnDeleteProfile;
         private System.Windows.Forms.ComboBox cmbExifMaintained;
+        private System.Windows.Forms.PictureBox pctrPreviewImage;
     }
 }
 

@@ -123,11 +123,14 @@ namespace PhotoBombXL
             foreach (string file in files)
             {
                 // display only image files
-                if (Path.GetExtension(file).Equals(".jpg") ||
-                    Path.GetExtension(file).Equals(".raw") ||
-                    Path.GetExtension(file).Equals(".gif") ||
-                    Path.GetExtension(file).Equals(".png") ||
-                    Path.GetExtension(file).Equals(".bmp"))
+                if (string.Equals(Path.GetExtension(file), ".jpg", StringComparison.CurrentCultureIgnoreCase) ||
+                    string.Equals(Path.GetExtension(file), ".jpeg", StringComparison.CurrentCultureIgnoreCase) ||
+                    string.Equals(Path.GetExtension(file), ".raw", StringComparison.CurrentCultureIgnoreCase) ||
+                    string.Equals(Path.GetExtension(file), ".gif", StringComparison.CurrentCultureIgnoreCase) ||
+                    string.Equals(Path.GetExtension(file), ".png", StringComparison.CurrentCultureIgnoreCase) ||
+                    string.Equals(Path.GetExtension(file), ".bmp", StringComparison.CurrentCultureIgnoreCase) ||
+                    string.Equals(Path.GetExtension(file), ".tiff", StringComparison.CurrentCultureIgnoreCase))
+
                 {
                     lstFilesInDirList.Items.Add(Path.GetFileName(file));
                 }
@@ -209,6 +212,18 @@ namespace PhotoBombXL
             if (folderBrowserDialogOutputDestination.ShowDialog() == DialogResult.OK)
             {
                 txtSaveDirectory.Text = folderBrowserDialogOutputDestination.SelectedPath;
+            }
+        }
+
+        private void lstFilesInDirList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                pctrPreviewImage.Image = Image.FromFile(txtSelectDirectory.Text + "\\" + lstFilesInDirList.SelectedItem);
+            }
+            catch (Exception exception)
+            {
+                // sometimes the path gets messed up but it's not really necessary to handle
             }
         }
     }
