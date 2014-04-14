@@ -16,6 +16,12 @@ namespace PhotoBombXL
             BMP
         };
 
+        public enum exifMaintained
+        {
+            Yes,
+            No
+        }
+
         public string name { get; set; }
         public int heightInPixels { get; set; }
         public int widthInPixels { get; set; }

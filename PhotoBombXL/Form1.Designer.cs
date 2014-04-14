@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lstProfileList = new System.Windows.Forms.ListBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnLoad = new System.Windows.Forms.Button();
             this.btnCreateProfile = new System.Windows.Forms.Button();
             this.lblProfileName = new System.Windows.Forms.Label();
             this.txtProfileName = new System.Windows.Forms.TextBox();
@@ -47,21 +45,20 @@
             this.txtAspectHeight = new System.Windows.Forms.TextBox();
             this.txtAspectWidth = new System.Windows.Forms.TextBox();
             this.lblExifMaintained = new System.Windows.Forms.Label();
-            this.txtExifMaintained = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSelectDirectory = new System.Windows.Forms.TextBox();
             this.btnBrowseSelect = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbFileType = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnBrowseSave = new System.Windows.Forms.Button();
             this.txtSaveDirectory = new System.Windows.Forms.TextBox();
             this.chkDefaultSave = new System.Windows.Forms.CheckBox();
+            this.btnDeleteProfile = new System.Windows.Forms.Button();
+            this.cmbExifMaintained = new System.Windows.Forms.ComboBox();
             this.profileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).BeginInit();
@@ -76,26 +73,6 @@
             this.lstProfileList.Size = new System.Drawing.Size(248, 238);
             this.lstProfileList.TabIndex = 0;
             this.lstProfileList.SelectedIndexChanged += new System.EventHandler(this.lstProfileList_SelectedIndexChanged);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(281, 377);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(87, 23);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "Save Profiles";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Location = new System.Drawing.Point(445, 377);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(87, 23);
-            this.btnLoad.TabIndex = 2;
-            this.btnLoad.Text = "refresh";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // btnCreateProfile
             // 
@@ -221,13 +198,6 @@
             this.lblExifMaintained.TabIndex = 18;
             this.lblExifMaintained.Text = "ExifMaintained";
             // 
-            // txtExifMaintained
-            // 
-            this.txtExifMaintained.Location = new System.Drawing.Point(86, 208);
-            this.txtExifMaintained.Name = "txtExifMaintained";
-            this.txtExifMaintained.Size = new System.Drawing.Size(85, 20);
-            this.txtExifMaintained.TabIndex = 19;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -280,26 +250,9 @@
             this.listBox1.Size = new System.Drawing.Size(250, 329);
             this.listBox1.TabIndex = 24;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(178, 377);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 23);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "refresh";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(16, 377);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 23);
-            this.button3.TabIndex = 26;
-            this.button3.Text = "Save Profiles";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbExifMaintained);
             this.groupBox1.Controls.Add(this.cmbFileType);
             this.groupBox1.Controls.Add(this.lblProfileName);
             this.groupBox1.Controls.Add(this.btnCreateProfile);
@@ -310,7 +263,6 @@
             this.groupBox1.Controls.Add(this.lblSize);
             this.groupBox1.Controls.Add(this.lblAspectHeight);
             this.groupBox1.Controls.Add(this.lblAspectWidth);
-            this.groupBox1.Controls.Add(this.txtExifMaintained);
             this.groupBox1.Controls.Add(this.txtHeight);
             this.groupBox1.Controls.Add(this.lblExifMaintained);
             this.groupBox1.Controls.Add(this.txtWidth);
@@ -367,6 +319,25 @@
             this.chkDefaultSave.UseVisualStyleBackColor = true;
             this.chkDefaultSave.CheckedChanged += new System.EventHandler(this.chkDefaultSave_CheckedChanged);
             // 
+            // btnDeleteProfile
+            // 
+            this.btnDeleteProfile.Location = new System.Drawing.Point(16, 374);
+            this.btnDeleteProfile.Name = "btnDeleteProfile";
+            this.btnDeleteProfile.Size = new System.Drawing.Size(92, 23);
+            this.btnDeleteProfile.TabIndex = 33;
+            this.btnDeleteProfile.Text = "Delete Profile";
+            this.btnDeleteProfile.UseVisualStyleBackColor = true;
+            this.btnDeleteProfile.Click += new System.EventHandler(this.btnDeleteProfile_Click);
+            // 
+            // cmbExifMaintained
+            // 
+            this.cmbExifMaintained.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbExifMaintained.FormattingEnabled = true;
+            this.cmbExifMaintained.Location = new System.Drawing.Point(86, 205);
+            this.cmbExifMaintained.Name = "cmbExifMaintained";
+            this.cmbExifMaintained.Size = new System.Drawing.Size(85, 21);
+            this.cmbExifMaintained.TabIndex = 34;
+            // 
             // profileBindingSource
             // 
             this.profileBindingSource.DataSource = typeof(PhotoBombXL.Profile);
@@ -376,21 +347,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 441);
+            this.Controls.Add(this.btnDeleteProfile);
             this.Controls.Add(this.chkDefaultSave);
             this.Controls.Add(this.btnBrowseSave);
             this.Controls.Add(this.txtSaveDirectory);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBrowseSelect);
             this.Controls.Add(this.txtSelectDirectory);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnLoad);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lstProfileList);
             this.Name = "Form1";
             this.Text = "Photo Bomber XL";
@@ -405,8 +373,6 @@
         #endregion
 
         private System.Windows.Forms.ListBox lstProfileList;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnCreateProfile;
         private System.Windows.Forms.Label lblProfileName;
         private System.Windows.Forms.TextBox txtProfileName;
@@ -422,15 +388,12 @@
         private System.Windows.Forms.TextBox txtAspectHeight;
         private System.Windows.Forms.TextBox txtAspectWidth;
         private System.Windows.Forms.Label lblExifMaintained;
-        private System.Windows.Forms.TextBox txtExifMaintained;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSelectDirectory;
         private System.Windows.Forms.Button btnBrowseSelect;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnBrowseSave;
@@ -438,6 +401,8 @@
         private System.Windows.Forms.CheckBox chkDefaultSave;
         private System.Windows.Forms.ComboBox cmbFileType;
         private System.Windows.Forms.BindingSource profileBindingSource;
+        private System.Windows.Forms.Button btnDeleteProfile;
+        private System.Windows.Forms.ComboBox cmbExifMaintained;
     }
 }
 
