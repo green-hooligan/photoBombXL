@@ -50,7 +50,7 @@
             this.btnBrowseSelect = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstFilesInDirList = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbFileType = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -222,6 +222,7 @@
             this.btnBrowseSelect.TabIndex = 22;
             this.btnBrowseSelect.Text = "Browse";
             this.btnBrowseSelect.UseVisualStyleBackColor = true;
+            this.btnBrowseSelect.Click += new System.EventHandler(this.btnBrowseSelect_Click);
             // 
             // label2
             // 
@@ -241,14 +242,14 @@
             this.label3.TabIndex = 25;
             this.label3.Text = "Save Directory";
             // 
-            // listBox1
+            // lstFilesInDirList
             // 
-            this.listBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(282, 39);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(250, 329);
-            this.listBox1.TabIndex = 24;
+            this.lstFilesInDirList.BackColor = System.Drawing.SystemColors.Window;
+            this.lstFilesInDirList.FormattingEnabled = true;
+            this.lstFilesInDirList.Location = new System.Drawing.Point(282, 39);
+            this.lstFilesInDirList.Name = "lstFilesInDirList";
+            this.lstFilesInDirList.Size = new System.Drawing.Size(250, 329);
+            this.lstFilesInDirList.TabIndex = 24;
             // 
             // groupBox1
             // 
@@ -300,6 +301,7 @@
             this.btnBrowseSave.TabIndex = 31;
             this.btnBrowseSave.Text = "Browse";
             this.btnBrowseSave.UseVisualStyleBackColor = true;
+            this.btnBrowseSave.Click += new System.EventHandler(this.btnBrowseSave_Click);
             // 
             // txtSaveDirectory
             // 
@@ -354,7 +356,7 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstFilesInDirList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBrowseSelect);
             this.Controls.Add(this.txtSelectDirectory);
@@ -393,7 +395,7 @@
         private System.Windows.Forms.Button btnBrowseSelect;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstFilesInDirList;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnBrowseSave;

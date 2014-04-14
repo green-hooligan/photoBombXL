@@ -15,6 +15,10 @@ namespace PhotoBombXL
 {
     public partial class Form1 : Form
     {
+        // these handle the file browsing
+        private FolderBrowserDialog folderBrowserDialogInputDestination;
+        private FolderBrowserDialog folderBrowserDialogOutputDestination;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +32,19 @@ namespace PhotoBombXL
 
             // this makes the profile list box use the name of the profile as its text
             lstProfileList.DisplayMember = "name";
+
+            // init the folder browser dialog
+            folderBrowserDialogInputDestination = new FolderBrowserDialog();
+            folderBrowserDialogInputDestination.Description = "Select where your images to be converted are";
+            folderBrowserDialogInputDestination.ShowNewFolderButton = false;
+            //folderBrowserDialogInputDestination.SelectedPath //use this to set the default folder, i don't know what to put here
+            //txtSelectDirectory.Text = folderBrowserDialogInputDestination.SelectedPath;
+
+            folderBrowserDialogOutputDestination = new FolderBrowserDialog();
+            folderBrowserDialogOutputDestination.Description = "Select where to save your converted images";
+            folderBrowserDialogOutputDestination.ShowNewFolderButton = true;
+            //folderBrowserDialogOutputDestination.SelectedPath = use this to set the default folder, i don't know what to put here
+            //txtSaveDirectory.Text = folderBrowserDialogOutputDestination.SelectedPath;
         }
 
         // this populates the list box with profiles from the txt file
@@ -94,6 +111,15 @@ namespace PhotoBombXL
             }
         }
 
+        /***************************************************
+         *      Handle closing of the app                  *
+         * ************************************************/
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            saveProfilesToFile();
+        }
+
         //   *************
         //   * GUI LOGIC *
         //   *************
@@ -144,13 +170,40 @@ namespace PhotoBombXL
             lstProfileList.Items.Remove((Profile)lstProfileList.SelectedItem);
         }
 
-        /***************************************************
-         *      Handle closing of the app                  *
-         * ************************************************/
-        protected override void OnClosing(CancelEventArgs e)
+        private void btnBrowseSelect_Click(object sender, EventArgs e)
         {
-            base.OnClosing(e);
-            saveProfilesToFile();
+            if (folderBrowserDialogInputDestination.ShowDialog() == DialogResult.OK)
+            {
+                // sets the text box with the path
+                txtSelectDirectory.Text = folderBrowserDialogInputDestination.SelectedPath;
+
+                // clear the list box
+                lstFilesInDirList.Items.Clear();
+                // get the files
+                string[] files = Directory.GetFiles(folderBrowserDialogInputDestination.SelectedPath);
+
+                // poputlate the list box with files
+                foreach (string file in files)
+                {
+                    // display only image files
+                    if (Path.GetExtension(file).Equals(".jpg") ||
+                        Path.GetExtension(file).Equals(".raw") ||
+                        Path.GetExtension(file).Equals(".gif") ||
+                        Path.GetExtension(file).Equals(".png") ||
+                        Path.GetExtension(file).Equals(".bmp"))
+                    {
+                        lstFilesInDirList.Items.Add(Path.GetFileName(file));
+                    }
+                }
+            }
+        }
+
+        private void btnBrowseSave_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialogOutputDestination.ShowDialog() == DialogResult.OK)
+            {
+                txtSaveDirectory.Text = folderBrowserDialogOutputDestination.SelectedPath;
+            }
         }
     }
 }
