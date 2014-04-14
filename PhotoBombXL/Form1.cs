@@ -37,8 +37,9 @@ namespace PhotoBombXL
             folderBrowserDialogInputDestination = new FolderBrowserDialog();
             folderBrowserDialogInputDestination.Description = "Select where your images to be converted are";
             folderBrowserDialogInputDestination.ShowNewFolderButton = false;
-            //folderBrowserDialogInputDestination.SelectedPath //use this to set the default folder, i don't know what to put here
-            //txtSelectDirectory.Text = folderBrowserDialogInputDestination.SelectedPath;
+            folderBrowserDialogInputDestination.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures); //use this to set the default folder
+            txtSelectDirectory.Text = folderBrowserDialogInputDestination.SelectedPath;
+            populateListboxWithImageFiles();
 
             folderBrowserDialogOutputDestination = new FolderBrowserDialog();
             folderBrowserDialogOutputDestination.Description = "Select where to save your converted images";
@@ -111,6 +112,28 @@ namespace PhotoBombXL
             }
         }
 
+        private void populateListboxWithImageFiles()
+        {
+            // clear the list box
+            lstFilesInDirList.Items.Clear();
+            // get the files
+            string[] files = Directory.GetFiles(folderBrowserDialogInputDestination.SelectedPath);
+
+            // poputlate the list box with files
+            foreach (string file in files)
+            {
+                // display only image files
+                if (Path.GetExtension(file).Equals(".jpg") ||
+                    Path.GetExtension(file).Equals(".raw") ||
+                    Path.GetExtension(file).Equals(".gif") ||
+                    Path.GetExtension(file).Equals(".png") ||
+                    Path.GetExtension(file).Equals(".bmp"))
+                {
+                    lstFilesInDirList.Items.Add(Path.GetFileName(file));
+                }
+            }
+        }
+
         /***************************************************
          *      Handle closing of the app                  *
          * ************************************************/
@@ -177,24 +200,7 @@ namespace PhotoBombXL
                 // sets the text box with the path
                 txtSelectDirectory.Text = folderBrowserDialogInputDestination.SelectedPath;
 
-                // clear the list box
-                lstFilesInDirList.Items.Clear();
-                // get the files
-                string[] files = Directory.GetFiles(folderBrowserDialogInputDestination.SelectedPath);
-
-                // poputlate the list box with files
-                foreach (string file in files)
-                {
-                    // display only image files
-                    if (Path.GetExtension(file).Equals(".jpg") ||
-                        Path.GetExtension(file).Equals(".raw") ||
-                        Path.GetExtension(file).Equals(".gif") ||
-                        Path.GetExtension(file).Equals(".png") ||
-                        Path.GetExtension(file).Equals(".bmp"))
-                    {
-                        lstFilesInDirList.Items.Add(Path.GetFileName(file));
-                    }
-                }
+                populateListboxWithImageFiles();
             }
         }
 
