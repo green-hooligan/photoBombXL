@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.lstProfileList = new System.Windows.Forms.ListBox();
+            this.lstProfile = new System.Windows.Forms.ListBox();
             this.btnCreateProfile = new System.Windows.Forms.Button();
             this.lblProfileName = new System.Windows.Forms.Label();
             this.txtProfileName = new System.Windows.Forms.TextBox();
@@ -50,31 +49,31 @@
             this.btnBrowseSelect = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lstFilesInDirList = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbExifMaintained = new System.Windows.Forms.ComboBox();
             this.cmbFileType = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnBrowseSave = new System.Windows.Forms.Button();
             this.txtSaveDirectory = new System.Windows.Forms.TextBox();
             this.chkDefaultSave = new System.Windows.Forms.CheckBox();
             this.btnDeleteProfile = new System.Windows.Forms.Button();
-            this.cmbExifMaintained = new System.Windows.Forms.ComboBox();
             this.pctrPreviewImage = new System.Windows.Forms.PictureBox();
-            this.profileBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCheckAll = new System.Windows.Forms.Button();
+            this.btnUncheckAll = new System.Windows.Forms.Button();
+            this.chklstFiles = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctrPreviewImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // lstProfileList
+            // lstProfile
             // 
-            this.lstProfileList.BackColor = System.Drawing.SystemColors.Window;
-            this.lstProfileList.FormattingEnabled = true;
-            this.lstProfileList.Location = new System.Drawing.Point(17, 130);
-            this.lstProfileList.Name = "lstProfileList";
-            this.lstProfileList.Size = new System.Drawing.Size(248, 238);
-            this.lstProfileList.TabIndex = 0;
-            this.lstProfileList.SelectedIndexChanged += new System.EventHandler(this.lstProfileList_SelectedIndexChanged);
+            this.lstProfile.BackColor = System.Drawing.SystemColors.Window;
+            this.lstProfile.FormattingEnabled = true;
+            this.lstProfile.Location = new System.Drawing.Point(274, 40);
+            this.lstProfile.Name = "lstProfile";
+            this.lstProfile.Size = new System.Drawing.Size(248, 238);
+            this.lstProfile.TabIndex = 0;
+            this.lstProfile.SelectedIndexChanged += new System.EventHandler(this.lstProfileList_SelectedIndexChanged);
             // 
             // btnCreateProfile
             // 
@@ -244,16 +243,6 @@
             this.label3.TabIndex = 25;
             this.label3.Text = "Save Directory";
             // 
-            // lstFilesInDirList
-            // 
-            this.lstFilesInDirList.BackColor = System.Drawing.SystemColors.Window;
-            this.lstFilesInDirList.FormattingEnabled = true;
-            this.lstFilesInDirList.Location = new System.Drawing.Point(282, 39);
-            this.lstFilesInDirList.Name = "lstFilesInDirList";
-            this.lstFilesInDirList.Size = new System.Drawing.Size(250, 238);
-            this.lstFilesInDirList.TabIndex = 24;
-            this.lstFilesInDirList.SelectedIndexChanged += new System.EventHandler(this.lstFilesInDirList_SelectedIndexChanged);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cmbExifMaintained);
@@ -280,6 +269,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // cmbExifMaintained
+            // 
+            this.cmbExifMaintained.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbExifMaintained.FormattingEnabled = true;
+            this.cmbExifMaintained.Location = new System.Drawing.Point(86, 205);
+            this.cmbExifMaintained.Name = "cmbExifMaintained";
+            this.cmbExifMaintained.Size = new System.Drawing.Size(85, 21);
+            this.cmbExifMaintained.TabIndex = 34;
+            // 
             // cmbFileType
             // 
             this.cmbFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -291,9 +289,9 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 406);
+            this.progressBar1.Location = new System.Drawing.Point(16, 403);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(829, 23);
+            this.progressBar1.Size = new System.Drawing.Size(829, 26);
             this.progressBar1.TabIndex = 29;
             // 
             // btnBrowseSave
@@ -326,22 +324,13 @@
             // 
             // btnDeleteProfile
             // 
-            this.btnDeleteProfile.Location = new System.Drawing.Point(16, 374);
+            this.btnDeleteProfile.Location = new System.Drawing.Point(449, 283);
             this.btnDeleteProfile.Name = "btnDeleteProfile";
-            this.btnDeleteProfile.Size = new System.Drawing.Size(92, 23);
+            this.btnDeleteProfile.Size = new System.Drawing.Size(81, 23);
             this.btnDeleteProfile.TabIndex = 33;
             this.btnDeleteProfile.Text = "Delete Profile";
             this.btnDeleteProfile.UseVisualStyleBackColor = true;
             this.btnDeleteProfile.Click += new System.EventHandler(this.btnDeleteProfile_Click);
-            // 
-            // cmbExifMaintained
-            // 
-            this.cmbExifMaintained.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbExifMaintained.FormattingEnabled = true;
-            this.cmbExifMaintained.Location = new System.Drawing.Point(86, 205);
-            this.cmbExifMaintained.Name = "cmbExifMaintained";
-            this.cmbExifMaintained.Size = new System.Drawing.Size(85, 21);
-            this.cmbExifMaintained.TabIndex = 34;
             // 
             // pctrPreviewImage
             // 
@@ -352,15 +341,43 @@
             this.pctrPreviewImage.TabIndex = 34;
             this.pctrPreviewImage.TabStop = false;
             // 
-            // profileBindingSource
+            // btnCheckAll
             // 
-            this.profileBindingSource.DataSource = typeof(PhotoBombXL.Profile);
+            this.btnCheckAll.Location = new System.Drawing.Point(12, 365);
+            this.btnCheckAll.Name = "btnCheckAll";
+            this.btnCheckAll.Size = new System.Drawing.Size(92, 23);
+            this.btnCheckAll.TabIndex = 35;
+            this.btnCheckAll.Text = "Check All";
+            this.btnCheckAll.UseVisualStyleBackColor = true;
+            this.btnCheckAll.Click += new System.EventHandler(this.btnCheckAll_Click);
+            // 
+            // btnUncheckAll
+            // 
+            this.btnUncheckAll.Location = new System.Drawing.Point(172, 365);
+            this.btnUncheckAll.Name = "btnUncheckAll";
+            this.btnUncheckAll.Size = new System.Drawing.Size(92, 23);
+            this.btnUncheckAll.TabIndex = 36;
+            this.btnUncheckAll.Text = "Uncheck All";
+            this.btnUncheckAll.UseVisualStyleBackColor = true;
+            this.btnUncheckAll.Click += new System.EventHandler(this.btnUncheckAll_Click);
+            // 
+            // chklstFiles
+            // 
+            this.chklstFiles.FormattingEnabled = true;
+            this.chklstFiles.Location = new System.Drawing.Point(12, 130);
+            this.chklstFiles.Name = "chklstFiles";
+            this.chklstFiles.Size = new System.Drawing.Size(252, 229);
+            this.chklstFiles.TabIndex = 37;
+            this.chklstFiles.SelectedValueChanged += new System.EventHandler(this.chklstFiles_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 441);
+            this.Controls.Add(this.chklstFiles);
+            this.Controls.Add(this.btnUncheckAll);
+            this.Controls.Add(this.btnCheckAll);
             this.Controls.Add(this.pctrPreviewImage);
             this.Controls.Add(this.btnDeleteProfile);
             this.Controls.Add(this.chkDefaultSave);
@@ -369,18 +386,16 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lstFilesInDirList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBrowseSelect);
             this.Controls.Add(this.txtSelectDirectory);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lstProfileList);
+            this.Controls.Add(this.lstProfile);
             this.Name = "Form1";
             this.Text = "Photo Bomber XL";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctrPreviewImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,7 +403,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox lstProfileList;
+        private System.Windows.Forms.ListBox lstProfile;
         private System.Windows.Forms.Button btnCreateProfile;
         private System.Windows.Forms.Label lblProfileName;
         private System.Windows.Forms.TextBox txtProfileName;
@@ -409,17 +424,18 @@
         private System.Windows.Forms.Button btnBrowseSelect;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox lstFilesInDirList;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnBrowseSave;
         private System.Windows.Forms.TextBox txtSaveDirectory;
         private System.Windows.Forms.CheckBox chkDefaultSave;
         private System.Windows.Forms.ComboBox cmbFileType;
-        private System.Windows.Forms.BindingSource profileBindingSource;
         private System.Windows.Forms.Button btnDeleteProfile;
         private System.Windows.Forms.ComboBox cmbExifMaintained;
         private System.Windows.Forms.PictureBox pctrPreviewImage;
+        private System.Windows.Forms.Button btnCheckAll;
+        private System.Windows.Forms.Button btnUncheckAll;
+        private System.Windows.Forms.CheckedListBox chklstFiles;
     }
 }
 

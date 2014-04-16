@@ -31,7 +31,7 @@ namespace PhotoBombXL
             cmbExifMaintained.DataSource = Enum.GetValues(typeof(Profile.exifMaintained));
 
             // this makes the profile list box use the name of the profile as its text
-            lstProfileList.DisplayMember = "name";
+            lstProfile.DisplayMember = "name";
 
             // init the folder browser dialog
             folderBrowserDialogInputDestination = new FolderBrowserDialog();
@@ -70,14 +70,14 @@ namespace PhotoBombXL
             {
                 Profile.fileTypes fileType = (Profile.fileTypes)Enum.Parse(typeof(Profile.fileTypes), profileData[i + 3]);
                 Profile p = new Profile(profileData[i + 0], Convert.ToInt32(profileData[i + 1]), Convert.ToInt32(profileData[i + 2]), fileType, Convert.ToInt32(profileData[i + 4]), Convert.ToInt32(profileData[i + 5]), Convert.ToInt32(profileData[i + 6]), true);
-                lstProfileList.Items.Add(p);
+                lstProfile.Items.Add(p);
             }
         }
 
         private void saveProfilesToFile()
         {
             // make sure we have at least one profile to save
-            int numOfProfiles = lstProfileList.Items.Count;
+            int numOfProfiles = lstProfile.Items.Count;
             if(numOfProfiles < 1)
             {
                 MessageBox.Show("No profiles found");
@@ -90,14 +90,14 @@ namespace PhotoBombXL
             // getting profiles from list
             for (int i = 0; i < numOfProfiles; i++)
             {
-                profileData[i] += ((Profile)lstProfileList.Items[i]).name + "\v";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).heightInPixels + "\v";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).widthInPixels + "\v";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).fileType + "\v";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).fileSize + "\v";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).aspectHeight + "\v";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).aspectWidth + "\v";
-                profileData[i] += ((Profile)lstProfileList.Items[i]).isExifMaintained + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).name + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).heightInPixels + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).widthInPixels + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).fileType + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).fileSize + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).aspectHeight + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).aspectWidth + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).isExifMaintained + "\v";
             }
 
             try
@@ -115,7 +115,7 @@ namespace PhotoBombXL
         private void populateListboxWithImageFiles()
         {
             // clear the list box
-            lstFilesInDirList.Items.Clear();
+            chklstFiles.Items.Clear();
             // get the files
             string[] files = Directory.GetFiles(folderBrowserDialogInputDestination.SelectedPath);
 
@@ -132,7 +132,7 @@ namespace PhotoBombXL
                     string.Equals(Path.GetExtension(file), ".tiff", StringComparison.CurrentCultureIgnoreCase))
 
                 {
-                    lstFilesInDirList.Items.Add(Path.GetFileName(file));
+                    chklstFiles.Items.Add(Path.GetFileName(file));
                 }
             }
         }
@@ -158,7 +158,7 @@ namespace PhotoBombXL
             bool isExifMaintained = exifMaintained == Profile.exifMaintained.Yes ? true : false;
 
             Profile p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
-            lstProfileList.Items.Add(p);
+            lstProfile.Items.Add(p);
         }
 
         private void chkDefaultSave_CheckedChanged(object sender, EventArgs e)
@@ -177,23 +177,23 @@ namespace PhotoBombXL
 
         private void lstProfileList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstProfileList.SelectedItem == null)
+            if (lstProfile.SelectedItem == null)
             {
                 return;
             }
-            txtProfileName.Text = ((Profile)lstProfileList.SelectedItem).name;
-            txtHeight.Text = ((Profile)lstProfileList.SelectedItem).heightInPixels.ToString();
-            txtWidth.Text = ((Profile)lstProfileList.SelectedItem).widthInPixels.ToString();
-            cmbFileType.Text = ((Profile)lstProfileList.SelectedItem).fileType.ToString();
-            txtFileSize.Text = ((Profile)lstProfileList.SelectedItem).fileSize.ToString();
-            txtAspectHeight.Text = ((Profile)lstProfileList.SelectedItem).aspectHeight.ToString();
-            txtAspectWidth.Text = ((Profile)lstProfileList.SelectedItem).aspectWidth.ToString();
-            cmbExifMaintained.Text = ((Profile)lstProfileList.SelectedItem).isExifMaintained == true ? "Yes" : "No";
+            txtProfileName.Text = ((Profile)lstProfile.SelectedItem).name;
+            txtHeight.Text = ((Profile)lstProfile.SelectedItem).heightInPixels.ToString();
+            txtWidth.Text = ((Profile)lstProfile.SelectedItem).widthInPixels.ToString();
+            cmbFileType.Text = ((Profile)lstProfile.SelectedItem).fileType.ToString();
+            txtFileSize.Text = ((Profile)lstProfile.SelectedItem).fileSize.ToString();
+            txtAspectHeight.Text = ((Profile)lstProfile.SelectedItem).aspectHeight.ToString();
+            txtAspectWidth.Text = ((Profile)lstProfile.SelectedItem).aspectWidth.ToString();
+            cmbExifMaintained.Text = ((Profile)lstProfile.SelectedItem).isExifMaintained == true ? "Yes" : "No";
         }
 
         private void btnDeleteProfile_Click(object sender, EventArgs e)
         {
-            lstProfileList.Items.Remove((Profile)lstProfileList.SelectedItem);
+            lstProfile.Items.Remove((Profile)lstProfile.SelectedItem);
         }
 
         private void btnBrowseSelect_Click(object sender, EventArgs e)
@@ -215,16 +215,28 @@ namespace PhotoBombXL
             }
         }
 
-        private void lstFilesInDirList_SelectedIndexChanged(object sender, EventArgs e)
+        private void chklstFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                pctrPreviewImage.Image = Image.FromFile(txtSelectDirectory.Text + "\\" + lstFilesInDirList.SelectedItem);
+                pctrPreviewImage.Image = Image.FromFile(txtSelectDirectory.Text + "\\" + chklstFiles.SelectedItem);
             }
             catch (Exception exception)
             {
                 // sometimes the path gets messed up but it's not really necessary to handle
             }
+        }
+
+        private void btnCheckAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < chklstFiles.Items.Count; i++)
+                chklstFiles.SetItemChecked(i, true);
+        }
+
+        private void btnUncheckAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < chklstFiles.Items.Count; i++)
+                chklstFiles.SetItemChecked(i, false);
         }
     }
 }
