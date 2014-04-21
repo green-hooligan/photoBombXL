@@ -170,6 +170,32 @@ namespace PhotoBombXL
             cmbFileType.Text = "mb";
         }
 
+        private void EnableProfile()
+        {
+            txtProfileName.ReadOnly = false;
+            txtHeight.ReadOnly = false;
+            txtWidth.ReadOnly = false;
+            txtFileSize.ReadOnly = false;
+            txtAspectHeight.ReadOnly = false;
+            txtAspectWidth.ReadOnly = false;
+            cmbExifMaintained.Enabled = true;
+            cmbFileSize.Enabled = true;
+            cmbFileType.Enabled = true;
+        }
+
+        private void DisableProfile()
+        {
+            txtProfileName.ReadOnly = true;
+            txtHeight.ReadOnly = true;
+            txtWidth.ReadOnly = true;
+            txtFileSize.ReadOnly = true;
+            txtAspectHeight.ReadOnly = true;
+            txtAspectWidth.ReadOnly = true;
+            cmbExifMaintained.Enabled = false;
+            cmbFileSize.Enabled = false;
+            cmbFileType.Enabled = false;
+        }
+
         private void chkDefaultSave_CheckedChanged(object sender, EventArgs e)
         {
             if (chkDefaultSave.Checked == true)
@@ -257,7 +283,7 @@ namespace PhotoBombXL
 
             try
             {
-                Profile testProfile = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
+                Profile testProfile  = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
             }
             catch (Exception)
             {
@@ -275,6 +301,11 @@ namespace PhotoBombXL
             btnCreateProfile.Visible = true;
             btnCancelProfile.Visible = false;
             btnSaveProfile.Visible = false;
+        }
+
+        private void btnEditProfile_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

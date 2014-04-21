@@ -102,6 +102,7 @@
             // 
             this.txtProfileName.Location = new System.Drawing.Point(86, 26);
             this.txtProfileName.Name = "txtProfileName";
+            this.txtProfileName.ReadOnly = true;
             this.txtProfileName.Size = new System.Drawing.Size(85, 20);
             this.txtProfileName.TabIndex = 5;
             // 
@@ -163,6 +164,7 @@
             // 
             this.txtHeight.Location = new System.Drawing.Point(87, 52);
             this.txtHeight.Name = "txtHeight";
+            this.txtHeight.ReadOnly = true;
             this.txtHeight.Size = new System.Drawing.Size(85, 20);
             this.txtHeight.TabIndex = 12;
             // 
@@ -170,6 +172,7 @@
             // 
             this.txtWidth.Location = new System.Drawing.Point(87, 78);
             this.txtWidth.Name = "txtWidth";
+            this.txtWidth.ReadOnly = true;
             this.txtWidth.Size = new System.Drawing.Size(85, 20);
             this.txtWidth.TabIndex = 13;
             // 
@@ -177,6 +180,7 @@
             // 
             this.txtFileSize.Location = new System.Drawing.Point(87, 130);
             this.txtFileSize.Name = "txtFileSize";
+            this.txtFileSize.ReadOnly = true;
             this.txtFileSize.Size = new System.Drawing.Size(85, 20);
             this.txtFileSize.TabIndex = 15;
             // 
@@ -184,6 +188,7 @@
             // 
             this.txtAspectHeight.Location = new System.Drawing.Point(87, 156);
             this.txtAspectHeight.Name = "txtAspectHeight";
+            this.txtAspectHeight.ReadOnly = true;
             this.txtAspectHeight.Size = new System.Drawing.Size(85, 20);
             this.txtAspectHeight.TabIndex = 16;
             // 
@@ -191,6 +196,7 @@
             // 
             this.txtAspectWidth.Location = new System.Drawing.Point(87, 182);
             this.txtAspectWidth.Name = "txtAspectWidth";
+            this.txtAspectWidth.ReadOnly = true;
             this.txtAspectWidth.Size = new System.Drawing.Size(85, 20);
             this.txtAspectWidth.TabIndex = 17;
             // 
@@ -287,6 +293,7 @@
             // cmbFileType
             // 
             this.cmbFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFileType.Enabled = false;
             this.cmbFileType.FormattingEnabled = true;
             this.cmbFileType.Location = new System.Drawing.Point(87, 103);
             this.cmbFileType.Name = "cmbFileType";
@@ -418,6 +425,7 @@
             this.btnEditProfile.TabIndex = 38;
             this.btnEditProfile.Text = "Edit Profile";
             this.btnEditProfile.UseVisualStyleBackColor = true;
+            this.btnEditProfile.Click += new System.EventHandler(this.btnEditProfile_Click);
             // 
             // Form1
             // 
