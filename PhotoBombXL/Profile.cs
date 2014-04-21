@@ -24,8 +24,8 @@ namespace PhotoBombXL
 
         public enum fileSizeIndicator
         {
-            mB,
-            kB
+            mb,
+            kb
         }
 
         public string name { get; set; }
