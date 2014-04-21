@@ -152,13 +152,22 @@ namespace PhotoBombXL
 
         private void btnCreateProfile_Click(object sender, EventArgs e)
         {
-            Profile.fileTypes fileType = (Profile.fileTypes)Enum.Parse(typeof(Profile.fileTypes), cmbFileType.Text);
-            Profile.exifMaintained exifMaintained = (Profile.exifMaintained)Enum.Parse(typeof(Profile.exifMaintained), cmbExifMaintained.Text);
+            btnCreateProfile.Visible = false;
+            btnSaveProfile.Visible = true;
+            btnCancelProfile.Visible = true;
+        }
 
-            bool isExifMaintained = exifMaintained == Profile.exifMaintained.Yes ? true : false;
-
-            Profile p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
-            lstProfile.Items.Add(p);
+        private void ClearProfile()
+        {
+            txtProfileName.Text = "";
+            txtHeight.Text = "";
+            txtWidth.Text = "";
+            txtFileSize.Text = "";
+            txtAspectHeight.Text = "";
+            txtAspectWidth.Text = "";
+            cmbExifMaintained.Text = "";
+            cmbFileSize.Text = "";
+            cmbFileType.Text = "mb";
         }
 
         private void chkDefaultSave_CheckedChanged(object sender, EventArgs e)
@@ -237,6 +246,35 @@ namespace PhotoBombXL
         {
             for (int i = 0; i < chklstFiles.Items.Count; i++)
                 chklstFiles.SetItemChecked(i, false);
+        }
+
+        private void btnSaveProfile_Click(object sender, EventArgs e)
+        {
+            Profile.fileTypes fileType = (Profile.fileTypes)Enum.Parse(typeof(Profile.fileTypes), cmbFileType.Text);
+            Profile.exifMaintained exifMaintained = (Profile.exifMaintained)Enum.Parse(typeof(Profile.exifMaintained), cmbExifMaintained.Text);
+
+            bool isExifMaintained = exifMaintained == Profile.exifMaintained.Yes ? true : false;
+
+            try
+            {
+                Profile testProfile = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Profile cannot be created.", "Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Profile p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
+            lstProfile.Items.Add(p);
+            btnCancelProfile_Click(sender, e);
+        }
+
+        private void btnCancelProfile_Click(object sender, EventArgs e)
+        {
+            btnCreateProfile.Visible = true;
+            btnCancelProfile.Visible = false;
+            btnSaveProfile.Visible = false;
         }
     }
 }

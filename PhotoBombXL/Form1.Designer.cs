@@ -61,6 +61,10 @@
             this.btnCheckAll = new System.Windows.Forms.Button();
             this.btnUncheckAll = new System.Windows.Forms.Button();
             this.chklstFiles = new System.Windows.Forms.CheckedListBox();
+            this.cmbFileSize = new System.Windows.Forms.ComboBox();
+            this.btnSaveProfile = new System.Windows.Forms.Button();
+            this.btnCancelProfile = new System.Windows.Forms.Button();
+            this.btnEditProfile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctrPreviewImage)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +81,7 @@
             // 
             // btnCreateProfile
             // 
-            this.btnCreateProfile.Location = new System.Drawing.Point(45, 234);
+            this.btnCreateProfile.Location = new System.Drawing.Point(554, 295);
             this.btnCreateProfile.Name = "btnCreateProfile";
             this.btnCreateProfile.Size = new System.Drawing.Size(103, 23);
             this.btnCreateProfile.TabIndex = 3;
@@ -245,10 +249,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCancelProfile);
+            this.groupBox1.Controls.Add(this.cmbFileSize);
             this.groupBox1.Controls.Add(this.cmbExifMaintained);
+            this.groupBox1.Controls.Add(this.btnSaveProfile);
             this.groupBox1.Controls.Add(this.cmbFileType);
             this.groupBox1.Controls.Add(this.lblProfileName);
-            this.groupBox1.Controls.Add(this.btnCreateProfile);
             this.groupBox1.Controls.Add(this.txtProfileName);
             this.groupBox1.Controls.Add(this.lblHeight);
             this.groupBox1.Controls.Add(this.lblWidth);
@@ -267,7 +273,7 @@
             this.groupBox1.Size = new System.Drawing.Size(293, 265);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Profile Information";
             // 
             // cmbExifMaintained
             // 
@@ -370,14 +376,59 @@
             this.chklstFiles.TabIndex = 37;
             this.chklstFiles.SelectedValueChanged += new System.EventHandler(this.chklstFiles_SelectedIndexChanged);
             // 
+            // cmbFileSize
+            // 
+            this.cmbFileSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFileSize.FormattingEnabled = true;
+            this.cmbFileSize.Items.AddRange(new object[] {
+            "kb",
+            "mb"});
+            this.cmbFileSize.Location = new System.Drawing.Point(178, 130);
+            this.cmbFileSize.Name = "cmbFileSize";
+            this.cmbFileSize.Size = new System.Drawing.Size(85, 21);
+            this.cmbFileSize.TabIndex = 35;
+            // 
+            // btnSaveProfile
+            // 
+            this.btnSaveProfile.Location = new System.Drawing.Point(6, 234);
+            this.btnSaveProfile.Name = "btnSaveProfile";
+            this.btnSaveProfile.Size = new System.Drawing.Size(103, 23);
+            this.btnSaveProfile.TabIndex = 36;
+            this.btnSaveProfile.Text = "Save";
+            this.btnSaveProfile.UseVisualStyleBackColor = true;
+            this.btnSaveProfile.Visible = false;
+            this.btnSaveProfile.Click += new System.EventHandler(this.btnSaveProfile_Click);
+            // 
+            // btnCancelProfile
+            // 
+            this.btnCancelProfile.Location = new System.Drawing.Point(131, 234);
+            this.btnCancelProfile.Name = "btnCancelProfile";
+            this.btnCancelProfile.Size = new System.Drawing.Size(103, 23);
+            this.btnCancelProfile.TabIndex = 37;
+            this.btnCancelProfile.Text = "Cancel";
+            this.btnCancelProfile.UseVisualStyleBackColor = true;
+            this.btnCancelProfile.Visible = false;
+            this.btnCancelProfile.Click += new System.EventHandler(this.btnCancelProfile_Click);
+            // 
+            // btnEditProfile
+            // 
+            this.btnEditProfile.Location = new System.Drawing.Point(679, 295);
+            this.btnEditProfile.Name = "btnEditProfile";
+            this.btnEditProfile.Size = new System.Drawing.Size(103, 23);
+            this.btnEditProfile.TabIndex = 38;
+            this.btnEditProfile.Text = "Edit Profile";
+            this.btnEditProfile.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 441);
+            this.Controls.Add(this.btnEditProfile);
             this.Controls.Add(this.chklstFiles);
             this.Controls.Add(this.btnUncheckAll);
             this.Controls.Add(this.btnCheckAll);
+            this.Controls.Add(this.btnCreateProfile);
             this.Controls.Add(this.pctrPreviewImage);
             this.Controls.Add(this.btnDeleteProfile);
             this.Controls.Add(this.chkDefaultSave);
@@ -436,6 +487,10 @@
         private System.Windows.Forms.Button btnCheckAll;
         private System.Windows.Forms.Button btnUncheckAll;
         private System.Windows.Forms.CheckedListBox chklstFiles;
+        private System.Windows.Forms.ComboBox cmbFileSize;
+        private System.Windows.Forms.Button btnCancelProfile;
+        private System.Windows.Forms.Button btnSaveProfile;
+        private System.Windows.Forms.Button btnEditProfile;
     }
 }
 
