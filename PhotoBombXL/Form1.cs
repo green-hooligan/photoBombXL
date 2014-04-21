@@ -55,7 +55,7 @@ namespace PhotoBombXL
             {
                 return;
             }
-            String data;
+            string data;
             try
             {
                 data = System.IO.File.ReadAllText(Application.UserAppDataPath + "\\appdata.txt");
@@ -68,8 +68,17 @@ namespace PhotoBombXL
             String[] profileData =  data.Split('\v');
             for (int i = 0; i < profileData.Length - 1; i+=8)
             {
+                string name = profileData[i + 0];
+                int heightInPixels = Convert.ToInt32(profileData[i + 1]);
+                int widthInPixels = Convert.ToInt32(profileData[i + 2]);
                 Profile.fileTypes fileType = (Profile.fileTypes)Enum.Parse(typeof(Profile.fileTypes), profileData[i + 3]);
-                Profile p = new Profile(profileData[i + 0], Convert.ToInt32(profileData[i + 1]), Convert.ToInt32(profileData[i + 2]), fileType, Convert.ToInt32(profileData[i + 4]), Convert.ToInt32(profileData[i + 5]), Convert.ToInt32(profileData[i + 6]), true);
+                int fileSize = Convert.ToInt32(profileData[i + 4]);
+                Profile.fileSizeIndicator indicator = (Profile.fileSizeIndicator)Enum.Parse(typeof(Profile.fileSizeIndicator), profileData[i + 5]);
+                int aspectHeight = Convert.ToInt32(profileData[i + 6]);
+                int aspectWidth = Convert.ToInt32(profileData[i + 7]);
+                bool maintainExif = bool.Parse(profileData[i + 8]);
+
+                Profile p = new Profile(name, heightInPixels, widthInPixels, fileType, fileSize, indicator, aspectHeight, aspectWidth, maintainExif);
                 lstProfile.Items.Add(p);
             }
         }
@@ -78,11 +87,6 @@ namespace PhotoBombXL
         {
             // make sure we have at least one profile to save
             int numOfProfiles = lstProfile.Items.Count;
-            if(numOfProfiles < 1)
-            {
-                MessageBox.Show("No profiles found");
-                return;
-            }
 
             // this string will be written to a txt file
             string[] profileData = new string[numOfProfiles];
@@ -95,6 +99,7 @@ namespace PhotoBombXL
                 profileData[i] += ((Profile)lstProfile.Items[i]).widthInPixels + "\v";
                 profileData[i] += ((Profile)lstProfile.Items[i]).fileType + "\v";
                 profileData[i] += ((Profile)lstProfile.Items[i]).fileSize + "\v";
+                profileData[i] += ((Profile)lstProfile.Items[i]).indicator + "\v";
                 profileData[i] += ((Profile)lstProfile.Items[i]).aspectHeight + "\v";
                 profileData[i] += ((Profile)lstProfile.Items[i]).aspectWidth + "\v";
                 profileData[i] += ((Profile)lstProfile.Items[i]).isExifMaintained + "\v";
@@ -195,6 +200,7 @@ namespace PhotoBombXL
             txtWidth.Text = ((Profile)lstProfile.SelectedItem).widthInPixels.ToString();
             cmbFileType.Text = ((Profile)lstProfile.SelectedItem).fileType.ToString();
             txtFileSize.Text = ((Profile)lstProfile.SelectedItem).fileSize.ToString();
+            cmbFileSize.Text = ((Profile)lstProfile.SelectedItem).indicator.ToString();
             txtAspectHeight.Text = ((Profile)lstProfile.SelectedItem).aspectHeight.ToString();
             txtAspectWidth.Text = ((Profile)lstProfile.SelectedItem).aspectWidth.ToString();
             cmbExifMaintained.Text = ((Profile)lstProfile.SelectedItem).isExifMaintained == true ? "Yes" : "No";
@@ -252,12 +258,15 @@ namespace PhotoBombXL
         {
             Profile.fileTypes fileType = (Profile.fileTypes)Enum.Parse(typeof(Profile.fileTypes), cmbFileType.Text);
             Profile.exifMaintained exifMaintained = (Profile.exifMaintained)Enum.Parse(typeof(Profile.exifMaintained), cmbExifMaintained.Text);
+            Profile.fileSizeIndicator indicator = (Profile.fileSizeIndicator)Enum.Parse(typeof(Profile.fileSizeIndicator), cmbFileSize.Text);
 
             bool isExifMaintained = exifMaintained == Profile.exifMaintained.Yes ? true : false;
 
+            Profile p;
+
             try
             {
-                Profile testProfile = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
+                p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), indicator, Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
             }
             catch (Exception)
             {
@@ -265,7 +274,6 @@ namespace PhotoBombXL
                 return;
             }
 
-            Profile p = new Profile(txtProfileName.Text, Convert.ToInt32(txtHeight.Text), Convert.ToInt32(txtWidth.Text), fileType, Convert.ToInt32(txtFileSize.Text), Convert.ToInt32(txtAspectHeight.Text), Convert.ToInt32(txtAspectWidth.Text), isExifMaintained);
             lstProfile.Items.Add(p);
             btnCancelProfile_Click(sender, e);
         }
