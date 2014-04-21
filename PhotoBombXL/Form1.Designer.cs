@@ -81,7 +81,7 @@
             // 
             // btnCreateProfile
             // 
-            this.btnCreateProfile.Location = new System.Drawing.Point(554, 295);
+            this.btnCreateProfile.Location = new System.Drawing.Point(6, 234);
             this.btnCreateProfile.Name = "btnCreateProfile";
             this.btnCreateProfile.Size = new System.Drawing.Size(103, 23);
             this.btnCreateProfile.TabIndex = 3;
@@ -255,10 +255,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEditProfile);
             this.groupBox1.Controls.Add(this.btnCancelProfile);
             this.groupBox1.Controls.Add(this.cmbFileSize);
             this.groupBox1.Controls.Add(this.cmbExifMaintained);
-            this.groupBox1.Controls.Add(this.btnSaveProfile);
+            this.groupBox1.Controls.Add(this.btnCreateProfile);
             this.groupBox1.Controls.Add(this.cmbFileType);
             this.groupBox1.Controls.Add(this.lblProfileName);
             this.groupBox1.Controls.Add(this.txtProfileName);
@@ -274,6 +275,7 @@
             this.groupBox1.Controls.Add(this.txtAspectWidth);
             this.groupBox1.Controls.Add(this.txtAspectHeight);
             this.groupBox1.Controls.Add(this.txtFileSize);
+            this.groupBox1.Controls.Add(this.btnSaveProfile);
             this.groupBox1.Location = new System.Drawing.Point(548, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(293, 265);
@@ -284,6 +286,7 @@
             // cmbExifMaintained
             // 
             this.cmbExifMaintained.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbExifMaintained.Enabled = false;
             this.cmbExifMaintained.FormattingEnabled = true;
             this.cmbExifMaintained.Location = new System.Drawing.Point(86, 205);
             this.cmbExifMaintained.Name = "cmbExifMaintained";
@@ -386,10 +389,8 @@
             // cmbFileSize
             // 
             this.cmbFileSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFileSize.Enabled = false;
             this.cmbFileSize.FormattingEnabled = true;
-            this.cmbFileSize.Items.AddRange(new object[] {
-            "kb",
-            "mb"});
             this.cmbFileSize.Location = new System.Drawing.Point(178, 130);
             this.cmbFileSize.Name = "cmbFileSize";
             this.cmbFileSize.Size = new System.Drawing.Size(85, 21);
@@ -419,7 +420,7 @@
             // 
             // btnEditProfile
             // 
-            this.btnEditProfile.Location = new System.Drawing.Point(679, 295);
+            this.btnEditProfile.Location = new System.Drawing.Point(131, 234);
             this.btnEditProfile.Name = "btnEditProfile";
             this.btnEditProfile.Size = new System.Drawing.Size(103, 23);
             this.btnEditProfile.TabIndex = 38;
@@ -432,11 +433,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 441);
-            this.Controls.Add(this.btnEditProfile);
             this.Controls.Add(this.chklstFiles);
             this.Controls.Add(this.btnUncheckAll);
             this.Controls.Add(this.btnCheckAll);
-            this.Controls.Add(this.btnCreateProfile);
             this.Controls.Add(this.pctrPreviewImage);
             this.Controls.Add(this.btnDeleteProfile);
             this.Controls.Add(this.chkDefaultSave);

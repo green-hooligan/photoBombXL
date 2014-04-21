@@ -19,8 +19,11 @@ namespace PhotoBombXL
         private FolderBrowserDialog folderBrowserDialogInputDestination;
         private FolderBrowserDialog folderBrowserDialogOutputDestination;
 
+        private bool isCreating = true;
+
         public Form1()
         {
+
             InitializeComponent();
 
             // load the profiles into the list box from the file
@@ -29,6 +32,7 @@ namespace PhotoBombXL
             // set the combo box options
             cmbFileType.DataSource = Enum.GetValues(typeof(Profile.fileTypes));
             cmbExifMaintained.DataSource = Enum.GetValues(typeof(Profile.exifMaintained));
+            cmbFileSize.DataSource = Enum.GetValues(typeof(Profile.fileSizeIndicator));
 
             // this makes the profile list box use the name of the profile as its text
             lstProfile.DisplayMember = "name";
@@ -51,14 +55,14 @@ namespace PhotoBombXL
         // this populates the list box with profiles from the txt file
         private void loadProfilesFromFile()
         {
-            if(!File.Exists(Application.UserAppDataPath + "\\appdata.txt"))
+            if(!File.Exists(Application.UserAppDataPath + "\\ProfileInfo.txt"))
             {
                 return;
             }
             string data;
             try
             {
-                data = System.IO.File.ReadAllText(Application.UserAppDataPath + "\\appdata.txt");
+                data = System.IO.File.ReadAllText(Application.UserAppDataPath + "\\ProfileInfo.txt");
             }
             catch (IOException e)
             {
@@ -66,7 +70,7 @@ namespace PhotoBombXL
                 return;
             }
             String[] profileData =  data.Split('\v');
-            for (int i = 0; i < profileData.Length - 1; i+=8)
+            for (int i = 0; i < profileData.Length - 1; i+=9)
             {
                 string name = profileData[i + 0];
                 int heightInPixels = Convert.ToInt32(profileData[i + 1]);
@@ -109,7 +113,7 @@ namespace PhotoBombXL
             {
                 // WriteAllLines creates a file, writes a collection of strings to the file,
                 // and then closes the file.
-                System.IO.File.WriteAllLines(Application.UserAppDataPath + "\\appdata.txt", profileData);
+                System.IO.File.WriteAllLines(Application.UserAppDataPath + "\\ProfileInfo.txt", profileData);
             }
             catch (IOException e)
             {
@@ -157,7 +161,11 @@ namespace PhotoBombXL
 
         private void btnCreateProfile_Click(object sender, EventArgs e)
         {
+            isCreating = true;
+            ClearProfile();
+            EnableProfile();
             btnCreateProfile.Visible = false;
+            btnEditProfile.Visible = false;
             btnSaveProfile.Visible = true;
             btnCancelProfile.Visible = true;
         }
@@ -300,12 +308,15 @@ namespace PhotoBombXL
                 return;
             }
 
+            if (isCreating == false) lstProfile.Items.Remove(lstProfile.SelectedItem);
             lstProfile.Items.Add(p);
             btnCancelProfile_Click(sender, e);
         }
 
         private void btnCancelProfile_Click(object sender, EventArgs e)
         {
+            DisableProfile();
+            btnCreateProfile.Visible = true;
             btnCreateProfile.Visible = true;
             btnCancelProfile.Visible = false;
             btnSaveProfile.Visible = false;
@@ -313,7 +324,12 @@ namespace PhotoBombXL
 
         private void btnEditProfile_Click(object sender, EventArgs e)
         {
-
+            isCreating = false;
+            EnableProfile();
+            btnCreateProfile.Visible = false;
+            btnEditProfile.Visible = false;
+            btnSaveProfile.Visible = true;
+            btnCancelProfile.Visible = true;
         }
     }
 }

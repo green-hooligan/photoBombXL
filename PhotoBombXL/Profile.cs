@@ -13,7 +13,8 @@ namespace PhotoBombXL
             RAW,
             GIF,
             PNG,
-            BMP
+            BMP,
+            TIFF
         };
 
         public enum exifMaintained
