@@ -50,9 +50,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEditProfile = new System.Windows.Forms.Button();
+            this.btnCancelProfile = new System.Windows.Forms.Button();
+            this.cmbFileSize = new System.Windows.Forms.ComboBox();
             this.cmbExifMaintained = new System.Windows.Forms.ComboBox();
             this.cmbFileType = new System.Windows.Forms.ComboBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnSaveProfile = new System.Windows.Forms.Button();
+            this.prgProgressBar = new System.Windows.Forms.ProgressBar();
             this.btnBrowseSave = new System.Windows.Forms.Button();
             this.txtSaveDirectory = new System.Windows.Forms.TextBox();
             this.chkDefaultSave = new System.Windows.Forms.CheckBox();
@@ -61,21 +65,19 @@
             this.btnCheckAll = new System.Windows.Forms.Button();
             this.btnUncheckAll = new System.Windows.Forms.Button();
             this.chklstFiles = new System.Windows.Forms.CheckedListBox();
-            this.cmbFileSize = new System.Windows.Forms.ComboBox();
-            this.btnSaveProfile = new System.Windows.Forms.Button();
-            this.btnCancelProfile = new System.Windows.Forms.Button();
-            this.btnEditProfile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctrPreviewImage)).BeginInit();
             this.SuspendLayout();
             // 
             // lstProfile
             // 
+            this.lstProfile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstProfile.BackColor = System.Drawing.SystemColors.Window;
             this.lstProfile.FormattingEnabled = true;
-            this.lstProfile.Location = new System.Drawing.Point(274, 40);
+            this.lstProfile.Location = new System.Drawing.Point(274, 27);
             this.lstProfile.Name = "lstProfile";
-            this.lstProfile.Size = new System.Drawing.Size(248, 238);
+            this.lstProfile.Size = new System.Drawing.Size(248, 251);
             this.lstProfile.TabIndex = 0;
             this.lstProfile.SelectedIndexChanged += new System.EventHandler(this.lstProfileList_SelectedIndexChanged);
             // 
@@ -220,6 +222,8 @@
             // 
             // txtSelectDirectory
             // 
+            this.txtSelectDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSelectDirectory.Location = new System.Drawing.Point(12, 29);
             this.txtSelectDirectory.Name = "txtSelectDirectory";
             this.txtSelectDirectory.Size = new System.Drawing.Size(176, 20);
@@ -227,6 +231,7 @@
             // 
             // btnBrowseSelect
             // 
+            this.btnBrowseSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowseSelect.Location = new System.Drawing.Point(194, 29);
             this.btnBrowseSelect.Name = "btnBrowseSelect";
             this.btnBrowseSelect.Size = new System.Drawing.Size(74, 23);
@@ -237,6 +242,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(274, 13);
             this.label2.Name = "label2";
@@ -255,6 +261,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnEditProfile);
             this.groupBox1.Controls.Add(this.btnCancelProfile);
             this.groupBox1.Controls.Add(this.cmbFileSize);
@@ -283,6 +291,37 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Profile Information";
             // 
+            // btnEditProfile
+            // 
+            this.btnEditProfile.Location = new System.Drawing.Point(131, 234);
+            this.btnEditProfile.Name = "btnEditProfile";
+            this.btnEditProfile.Size = new System.Drawing.Size(103, 23);
+            this.btnEditProfile.TabIndex = 38;
+            this.btnEditProfile.Text = "Edit Profile";
+            this.btnEditProfile.UseVisualStyleBackColor = true;
+            this.btnEditProfile.Click += new System.EventHandler(this.btnEditProfile_Click);
+            // 
+            // btnCancelProfile
+            // 
+            this.btnCancelProfile.Location = new System.Drawing.Point(131, 234);
+            this.btnCancelProfile.Name = "btnCancelProfile";
+            this.btnCancelProfile.Size = new System.Drawing.Size(103, 23);
+            this.btnCancelProfile.TabIndex = 37;
+            this.btnCancelProfile.Text = "Cancel";
+            this.btnCancelProfile.UseVisualStyleBackColor = true;
+            this.btnCancelProfile.Visible = false;
+            this.btnCancelProfile.Click += new System.EventHandler(this.btnCancelProfile_Click);
+            // 
+            // cmbFileSize
+            // 
+            this.cmbFileSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFileSize.Enabled = false;
+            this.cmbFileSize.FormattingEnabled = true;
+            this.cmbFileSize.Location = new System.Drawing.Point(178, 130);
+            this.cmbFileSize.Name = "cmbFileSize";
+            this.cmbFileSize.Size = new System.Drawing.Size(85, 21);
+            this.cmbFileSize.TabIndex = 35;
+            // 
             // cmbExifMaintained
             // 
             this.cmbExifMaintained.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -303,15 +342,29 @@
             this.cmbFileType.Size = new System.Drawing.Size(85, 21);
             this.cmbFileType.TabIndex = 20;
             // 
-            // progressBar1
+            // btnSaveProfile
             // 
-            this.progressBar1.Location = new System.Drawing.Point(16, 403);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(829, 26);
-            this.progressBar1.TabIndex = 29;
+            this.btnSaveProfile.Location = new System.Drawing.Point(6, 234);
+            this.btnSaveProfile.Name = "btnSaveProfile";
+            this.btnSaveProfile.Size = new System.Drawing.Size(103, 23);
+            this.btnSaveProfile.TabIndex = 36;
+            this.btnSaveProfile.Text = "Save";
+            this.btnSaveProfile.UseVisualStyleBackColor = true;
+            this.btnSaveProfile.Visible = false;
+            this.btnSaveProfile.Click += new System.EventHandler(this.btnSaveProfile_Click);
+            // 
+            // prgProgressBar
+            // 
+            this.prgProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.prgProgressBar.Location = new System.Drawing.Point(12, 403);
+            this.prgProgressBar.Name = "prgProgressBar";
+            this.prgProgressBar.Size = new System.Drawing.Size(829, 26);
+            this.prgProgressBar.TabIndex = 29;
             // 
             // btnBrowseSave
             // 
+            this.btnBrowseSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowseSave.Location = new System.Drawing.Point(194, 81);
             this.btnBrowseSave.Name = "btnBrowseSave";
             this.btnBrowseSave.Size = new System.Drawing.Size(74, 23);
@@ -322,6 +375,8 @@
             // 
             // txtSaveDirectory
             // 
+            this.txtSaveDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSaveDirectory.Location = new System.Drawing.Point(12, 81);
             this.txtSaveDirectory.Name = "txtSaveDirectory";
             this.txtSaveDirectory.Size = new System.Drawing.Size(176, 20);
@@ -340,7 +395,8 @@
             // 
             // btnDeleteProfile
             // 
-            this.btnDeleteProfile.Location = new System.Drawing.Point(449, 283);
+            this.btnDeleteProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteProfile.Location = new System.Drawing.Point(441, 284);
             this.btnDeleteProfile.Name = "btnDeleteProfile";
             this.btnDeleteProfile.Size = new System.Drawing.Size(81, 23);
             this.btnDeleteProfile.TabIndex = 33;
@@ -350,7 +406,8 @@
             // 
             // pctrPreviewImage
             // 
-            this.pctrPreviewImage.Location = new System.Drawing.Point(282, 283);
+            this.pctrPreviewImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pctrPreviewImage.Location = new System.Drawing.Point(274, 284);
             this.pctrPreviewImage.Name = "pctrPreviewImage";
             this.pctrPreviewImage.Size = new System.Drawing.Size(161, 114);
             this.pctrPreviewImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -359,6 +416,7 @@
             // 
             // btnCheckAll
             // 
+            this.btnCheckAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCheckAll.Location = new System.Drawing.Point(12, 365);
             this.btnCheckAll.Name = "btnCheckAll";
             this.btnCheckAll.Size = new System.Drawing.Size(92, 23);
@@ -369,6 +427,7 @@
             // 
             // btnUncheckAll
             // 
+            this.btnUncheckAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUncheckAll.Location = new System.Drawing.Point(172, 365);
             this.btnUncheckAll.Name = "btnUncheckAll";
             this.btnUncheckAll.Size = new System.Drawing.Size(92, 23);
@@ -379,54 +438,15 @@
             // 
             // chklstFiles
             // 
+            this.chklstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chklstFiles.FormattingEnabled = true;
             this.chklstFiles.Location = new System.Drawing.Point(12, 130);
             this.chklstFiles.Name = "chklstFiles";
             this.chklstFiles.Size = new System.Drawing.Size(252, 229);
             this.chklstFiles.TabIndex = 37;
             this.chklstFiles.SelectedValueChanged += new System.EventHandler(this.chklstFiles_SelectedIndexChanged);
-            // 
-            // cmbFileSize
-            // 
-            this.cmbFileSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFileSize.Enabled = false;
-            this.cmbFileSize.FormattingEnabled = true;
-            this.cmbFileSize.Location = new System.Drawing.Point(178, 130);
-            this.cmbFileSize.Name = "cmbFileSize";
-            this.cmbFileSize.Size = new System.Drawing.Size(85, 21);
-            this.cmbFileSize.TabIndex = 35;
-            // 
-            // btnSaveProfile
-            // 
-            this.btnSaveProfile.Location = new System.Drawing.Point(6, 234);
-            this.btnSaveProfile.Name = "btnSaveProfile";
-            this.btnSaveProfile.Size = new System.Drawing.Size(103, 23);
-            this.btnSaveProfile.TabIndex = 36;
-            this.btnSaveProfile.Text = "Save";
-            this.btnSaveProfile.UseVisualStyleBackColor = true;
-            this.btnSaveProfile.Visible = false;
-            this.btnSaveProfile.Click += new System.EventHandler(this.btnSaveProfile_Click);
-            // 
-            // btnCancelProfile
-            // 
-            this.btnCancelProfile.Location = new System.Drawing.Point(131, 234);
-            this.btnCancelProfile.Name = "btnCancelProfile";
-            this.btnCancelProfile.Size = new System.Drawing.Size(103, 23);
-            this.btnCancelProfile.TabIndex = 37;
-            this.btnCancelProfile.Text = "Cancel";
-            this.btnCancelProfile.UseVisualStyleBackColor = true;
-            this.btnCancelProfile.Visible = false;
-            this.btnCancelProfile.Click += new System.EventHandler(this.btnCancelProfile_Click);
-            // 
-            // btnEditProfile
-            // 
-            this.btnEditProfile.Location = new System.Drawing.Point(131, 234);
-            this.btnEditProfile.Name = "btnEditProfile";
-            this.btnEditProfile.Size = new System.Drawing.Size(103, 23);
-            this.btnEditProfile.TabIndex = 38;
-            this.btnEditProfile.Text = "Edit Profile";
-            this.btnEditProfile.UseVisualStyleBackColor = true;
-            this.btnEditProfile.Click += new System.EventHandler(this.btnEditProfile_Click);
             // 
             // Form1
             // 
@@ -441,7 +461,7 @@
             this.Controls.Add(this.chkDefaultSave);
             this.Controls.Add(this.btnBrowseSave);
             this.Controls.Add(this.txtSaveDirectory);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.prgProgressBar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -449,6 +469,7 @@
             this.Controls.Add(this.txtSelectDirectory);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstProfile);
+            this.MinimumSize = new System.Drawing.Size(869, 479);
             this.Name = "Form1";
             this.Text = "Photo Bomber XL";
             this.groupBox1.ResumeLayout(false);
@@ -483,7 +504,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar prgProgressBar;
         private System.Windows.Forms.Button btnBrowseSave;
         private System.Windows.Forms.TextBox txtSaveDirectory;
         private System.Windows.Forms.CheckBox chkDefaultSave;

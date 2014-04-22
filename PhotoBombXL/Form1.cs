@@ -34,6 +34,16 @@ namespace PhotoBombXL
             cmbExifMaintained.DataSource = Enum.GetValues(typeof(Profile.exifMaintained));
             cmbFileSize.DataSource = Enum.GetValues(typeof(Profile.fileSizeIndicator));
 
+            // attempt to set default selection
+            try
+            {
+                lstProfile.SetSelected(0, true);
+            }
+            catch (Exception)
+            {
+
+            }
+
             // this makes the profile list box use the name of the profile as its text
             lstProfile.DisplayMember = "name";
 
@@ -315,11 +325,27 @@ namespace PhotoBombXL
 
         private void btnCancelProfile_Click(object sender, EventArgs e)
         {
+            var list = lstProfile.Items.Cast<Profile>().OrderBy(item => item.name).ToList();
+            lstProfile.Items.Clear();
+            foreach (Profile listItem in list)
+            {
+                lstProfile.Items.Add(listItem);
+            }
+
             DisableProfile();
             btnCreateProfile.Visible = true;
-            btnCreateProfile.Visible = true;
+            btnEditProfile.Visible = true;
             btnCancelProfile.Visible = false;
             btnSaveProfile.Visible = false;
+
+            try
+            {
+                lstProfile.SetSelected(0, true);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void btnEditProfile_Click(object sender, EventArgs e)
