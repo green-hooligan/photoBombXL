@@ -8,17 +8,7 @@ namespace PhotoBombXL
 {
     class ConverterUtil
     {
-        public enum fileTypes
-        {
-            PNG,
-            JPG,
-            GIF,
-            RAW,
-            BMP,
-            TIFF
-        }
-
-        public static void convertFiles(List<string> filesToBeConverted, ConverterUtil.fileTypes whichTypeOfFileToConvertTo, string destinationPath)
+        public static void convertFiles(List<string> filesToBeConverted, Profile.fileTypes whichTypeOfFileToConvertTo, string destinationPath)
         {
             foreach (string file in filesToBeConverted)
             {
@@ -28,23 +18,23 @@ namespace PhotoBombXL
                     System.Drawing.Image image = System.Drawing.Image.FromFile(file);
 
                     // choose which kind of file to convert the image to
-                    if (whichTypeOfFileToConvertTo == ConverterUtil.fileTypes.GIF)
+                    if (whichTypeOfFileToConvertTo == Profile.fileTypes.GIF)
                     {
                         image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Gif);
                     }
-                    else if (whichTypeOfFileToConvertTo == ConverterUtil.fileTypes.JPG)
+                    else if (whichTypeOfFileToConvertTo == Profile.fileTypes.JPG)
                     {
                         image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Jpeg);
                     }
-                    else if (whichTypeOfFileToConvertTo == ConverterUtil.fileTypes.PNG)
+                    else if (whichTypeOfFileToConvertTo == Profile.fileTypes.PNG)
                     {
                         image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Png);
                     }
-                    else if (whichTypeOfFileToConvertTo == ConverterUtil.fileTypes.GIF)
+                    else if (whichTypeOfFileToConvertTo == Profile.fileTypes.GIF)
                     {
                         image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Gif);
                     }
-                    else if (whichTypeOfFileToConvertTo == ConverterUtil.fileTypes.TIFF)
+                    else if (whichTypeOfFileToConvertTo == Profile.fileTypes.TIFF)
                     {
                         image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Tiff);
                     }

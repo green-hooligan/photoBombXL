@@ -141,7 +141,8 @@ namespace PhotoBombXL
                     string.Equals(Path.GetExtension(file), ".tiff", StringComparison.CurrentCultureIgnoreCase))
 
                 {
-                    chklstFiles.Items.Add(Path.GetFileName(file));
+                    ImageFilePathUtil path = new ImageFilePathUtil(file);
+                    chklstFiles.Items.Add(path);
                 }
             }
         }
@@ -330,6 +331,11 @@ namespace PhotoBombXL
             btnEditProfile.Visible = false;
             btnSaveProfile.Visible = true;
             btnCancelProfile.Visible = true;
+        }
+
+        private void btnConvert_Click(object sender, EventArgs e)
+        {
+            ConverterUtil.convertFiles(chklstFiles.CheckedItems.Cast<string>().ToList(), ((Profile)lstProfile.SelectedItem).fileType, txtSaveDirectory.Text);
         }
     }
 }
