@@ -46,6 +46,7 @@ namespace PhotoBombXL
 
             // this makes the profile list box use the name of the profile as its text
             lstProfile.DisplayMember = "name";
+            chklstFiles.DisplayMember = "fileName";
 
             // init the folder browser dialog
             folderBrowserDialogInputDestination = new FolderBrowserDialog();
@@ -284,7 +285,7 @@ namespace PhotoBombXL
         {
             try
             {
-                pctrPreviewImage.Image = Image.FromFile(txtSelectDirectory.Text + "\\" + chklstFiles.SelectedItem);
+                pctrPreviewImage.Image = Image.FromFile(((ImageFilePathUtil)chklstFiles.SelectedItem).fullPath);
             }
             catch (Exception exception)
             {
@@ -373,7 +374,9 @@ namespace PhotoBombXL
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            ConverterUtil.convertFiles(chklstFiles.CheckedItems.Cast<string>().ToList(), ((Profile)lstProfile.SelectedItem).fileType, txtSaveDirectory.Text);
+            MessageBox.Show(txtSaveDirectory.Text);
+            List<ImageFilePathUtil> list = chklstFiles.CheckedItems.Cast<ImageFilePathUtil>().ToList();
+            ConverterUtil.convertFiles(list, ((Profile)lstProfile.SelectedItem).fileType, txtSaveDirectory.Text);
         }
     }
 }
