@@ -35,6 +35,10 @@ namespace PhotoBombXL
                     {
                         image.Save(destinationPath + "\\" + file.nameWithoutExtension + ".tiff", System.Drawing.Imaging.ImageFormat.Tiff);
                     }
+                    else if (whichTypeOfFileToConvertTo == Profile.fileTypes.BMP)
+                    {
+                        image.Save(destinationPath + "\\" + file.nameWithoutExtension + ".tiff", System.Drawing.Imaging.ImageFormat.Bmp);
+                    }
                 }
             }
         }
