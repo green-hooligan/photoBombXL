@@ -103,27 +103,27 @@ namespace PhotoBombXL
             int numOfProfiles = lstProfile.Items.Count;
 
             // this string will be written to a txt file
-            string[] profileData = new string[numOfProfiles];
+            string profileData = "";
 
             // getting profiles from list
             for (int i = 0; i < numOfProfiles; i++)
             {
-                profileData[i] += ((Profile)lstProfile.Items[i]).name + "\v";
-                profileData[i] += ((Profile)lstProfile.Items[i]).heightInPixels + "\v";
-                profileData[i] += ((Profile)lstProfile.Items[i]).widthInPixels + "\v";
-                profileData[i] += ((Profile)lstProfile.Items[i]).fileType + "\v";
-                profileData[i] += ((Profile)lstProfile.Items[i]).fileSize + "\v";
-                profileData[i] += ((Profile)lstProfile.Items[i]).indicator + "\v";
-                profileData[i] += ((Profile)lstProfile.Items[i]).aspectHeight + "\v";
-                profileData[i] += ((Profile)lstProfile.Items[i]).aspectWidth + "\v";
-                profileData[i] += ((Profile)lstProfile.Items[i]).isExifMaintained + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).name + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).heightInPixels + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).widthInPixels + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).fileType + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).fileSize + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).indicator + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).aspectHeight + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).aspectWidth + "\v";
+                profileData += ((Profile)lstProfile.Items[i]).isExifMaintained + "\v";
             }
 
             try
             {
                 // WriteAllLines creates a file, writes a collection of strings to the file,
                 // and then closes the file.
-                System.IO.File.WriteAllLines(Application.UserAppDataPath + "\\ProfileInfo.txt", profileData);
+                System.IO.File.WriteAllText(Application.UserAppDataPath + "\\ProfileInfo.txt", profileData);
             }
             catch (IOException e)
             {
@@ -253,7 +253,12 @@ namespace PhotoBombXL
 
         private void btnDeleteProfile_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show("Are you sure you'd like to delete the select profile?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.No) return;
             lstProfile.Items.Remove((Profile)lstProfile.SelectedItem);
+
+            SortList();
+            SelectTop();
         }
 
         private void btnBrowseSelect_Click(object sender, EventArgs e)
@@ -326,19 +331,26 @@ namespace PhotoBombXL
 
         private void btnCancelProfile_Click(object sender, EventArgs e)
         {
-            var list = lstProfile.Items.Cast<Profile>().OrderBy(item => item.name).ToList();
-            lstProfile.Items.Clear();
-            foreach (Profile listItem in list)
-            {
-                lstProfile.Items.Add(listItem);
-            }
-
             DisableProfile();
             btnCreateProfile.Visible = true;
             btnEditProfile.Visible = true;
             btnCancelProfile.Visible = false;
             btnSaveProfile.Visible = false;
 
+            SortList();
+            SelectTop();
+        }
+
+        private void SortList()
+        {
+            List<Profile> list = lstProfile.Items.Cast<Profile>().ToList();
+            List<Profile> sortedList = list.OrderBy(o => o.name).ToList();
+            lstProfile.Items.Clear();
+            lstProfile.Items.AddRange(sortedList.ToArray());
+        }
+
+        private void SelectTop()
+        {
             try
             {
                 lstProfile.SetSelected(0, true);
