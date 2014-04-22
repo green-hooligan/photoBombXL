@@ -3,40 +3,37 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace PhotoBombXL
 {
     class ConverterUtil
     {
-        public static void convertFiles(List<string> filesToBeConverted, Profile.fileTypes whichTypeOfFileToConvertTo, string destinationPath)
+        public static void convertFiles(List<ImageFilePathUtil> filesToBeConverted, Profile.fileTypes whichTypeOfFileToConvertTo, string destinationPath)
         {
-            foreach (string file in filesToBeConverted)
+            foreach (ImageFilePathUtil file in filesToBeConverted)
             {
                 // check to make sure we are using a valid file
-                if (isFilePathValid(file))
+                if (isFilePathValid(file.fullPath))
                 {
-                    System.Drawing.Image image = System.Drawing.Image.FromFile(file);
+                    Image image = Image.FromFile(file.fullPath);
 
                     // choose which kind of file to convert the image to
                     if (whichTypeOfFileToConvertTo == Profile.fileTypes.GIF)
                     {
-                        image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Gif);
+                        image.Save(destinationPath + "\\" + file.nameWithoutExtension + ".gif", System.Drawing.Imaging.ImageFormat.Gif);
                     }
                     else if (whichTypeOfFileToConvertTo == Profile.fileTypes.JPG)
                     {
-                        image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        image.Save(destinationPath + "\\" + file.nameWithoutExtension + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                     }
                     else if (whichTypeOfFileToConvertTo == Profile.fileTypes.PNG)
                     {
-                        image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Png);
-                    }
-                    else if (whichTypeOfFileToConvertTo == Profile.fileTypes.GIF)
-                    {
-                        image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Gif);
+                        image.Save(destinationPath + "\\" + file.nameWithoutExtension + ".png", System.Drawing.Imaging.ImageFormat.Png);
                     }
                     else if (whichTypeOfFileToConvertTo == Profile.fileTypes.TIFF)
                     {
-                        image.Save(destinationPath, System.Drawing.Imaging.ImageFormat.Tiff);
+                        image.Save(destinationPath + "\\" + file.nameWithoutExtension + ".tiff", System.Drawing.Imaging.ImageFormat.Tiff);
                     }
                 }
             }

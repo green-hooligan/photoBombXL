@@ -449,6 +449,15 @@
             this.chklstFiles.TabIndex = 37;
             this.chklstFiles.SelectedValueChanged += new System.EventHandler(this.chklstFiles_SelectedIndexChanged);
             // 
+            // btnConvert
+            // 
+            this.btnConvert.Location = new System.Drawing.Point(634, 336);
+            this.btnConvert.Name = "btnConvert";
+            this.btnConvert.Size = new System.Drawing.Size(75, 23);
+            this.btnConvert.TabIndex = 0;
+            this.btnConvert.Text = "GoGo";
+            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
