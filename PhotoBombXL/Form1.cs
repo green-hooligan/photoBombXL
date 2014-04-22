@@ -374,9 +374,7 @@ namespace PhotoBombXL
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(txtSaveDirectory.Text);
-            List<ImageFilePathUtil> list = chklstFiles.CheckedItems.Cast<ImageFilePathUtil>().ToList();
-            ConverterUtil.convertFiles(list, ((Profile)lstProfile.SelectedItem).fileType, txtSaveDirectory.Text);
+            ConverterUtil.convertFiles(chklstFiles.CheckedItems.Cast<ImageFilePathUtil>().ToList(), ((Profile)lstProfile.SelectedItem).fileType, txtSaveDirectory.Text);
         }
     }
 }
