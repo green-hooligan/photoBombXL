@@ -48,6 +48,8 @@ namespace PhotoBombXL
             lstProfile.DisplayMember = "name";
             chklstFiles.DisplayMember = "fileName";
 
+            chkDefaultSave.Checked = true;
+
             // init the folder browser dialog
             folderBrowserDialogInputDestination = new FolderBrowserDialog();
             folderBrowserDialogInputDestination.Description = "Select where your images to be converted are";
@@ -136,8 +138,16 @@ namespace PhotoBombXL
         {
             // clear the list box
             chklstFiles.Items.Clear();
+            string[] files = new string[0];
+
             // get the files
-            string[] files = Directory.GetFiles(folderBrowserDialogInputDestination.SelectedPath);
+            try
+            {
+                files = Directory.GetFiles(txtSaveDirectory.Text);
+            }
+            catch (Exception)
+            {
+            }
 
             // poputlate the list box with files
             foreach (string file in files)
@@ -227,11 +237,13 @@ namespace PhotoBombXL
             {
                 btnBrowseSave.Enabled = false;
                 txtSaveDirectory.Enabled = false;
+                txtSaveDirectory.Text = txtSelectDirectory.Text;
             }
             else
             {
                 btnBrowseSave.Enabled = true;
                 txtSaveDirectory.Enabled = true;
+                txtSaveDirectory.Text = "";
             }
         }
 
@@ -257,6 +269,12 @@ namespace PhotoBombXL
             DialogResult dr = MessageBox.Show("Are you sure you'd like to delete the select profile?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dr == DialogResult.No) return;
             lstProfile.Items.Remove((Profile)lstProfile.SelectedItem);
+
+            if (lstProfile.Items.Count == 0)
+            {
+                ClearProfile();
+                return;
+            }
 
             SortList();
             SelectTop();
@@ -374,7 +392,14 @@ namespace PhotoBombXL
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            ConverterUtil.convertFiles(chklstFiles.CheckedItems.Cast<ImageFilePathUtil>().ToList(), ((Profile)lstProfile.SelectedItem).fileType, txtSaveDirectory.Text);
+            ConverterUtil.convertFiles(chklstFiles.CheckedItems.Cast<ImageFilePathUtil>().ToList(), (Profile)lstProfile.SelectedItem, txtSaveDirectory.Text);
+        }
+
+        private void txtSelectDirectory_TextChanged(object sender, EventArgs e)
+        {
+            chkDefaultSave_CheckedChanged(sender, e);
+
+            populateListboxWithImageFiles();
         }
     }
 }

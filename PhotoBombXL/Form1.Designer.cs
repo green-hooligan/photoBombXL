@@ -229,6 +229,7 @@
             this.txtSelectDirectory.Name = "txtSelectDirectory";
             this.txtSelectDirectory.Size = new System.Drawing.Size(176, 20);
             this.txtSelectDirectory.TabIndex = 21;
+            this.txtSelectDirectory.TextChanged += new System.EventHandler(this.txtSelectDirectory_TextChanged);
             // 
             // btnBrowseSelect
             // 
