@@ -392,6 +392,18 @@ namespace PhotoBombXL
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
+            if (chklstFiles.Items.Count == 0)
+            {
+                MessageBox.Show("No images to convert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (txtSaveDirectory.Text == "")
+            {
+                MessageBox.Show("Since no directory was selected, a default directory will be used.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                chkDefaultSave.Checked = true;
+            }
+
             ConverterUtil.convertFiles(chklstFiles.CheckedItems.Cast<ImageFilePathUtil>().ToList(), (Profile)lstProfile.SelectedItem, txtSaveDirectory.Text);
         }
 
