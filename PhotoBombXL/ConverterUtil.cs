@@ -4,13 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace PhotoBombXL
 {
     class ConverterUtil
     {
-        public static void convertFiles(List<ImageFilePathUtil> filesToBeConverted, Profile usedProfile, string destinationPath)
+        public static void convertFiles(List<ImageFilePathUtil> filesToBeConverted, Profile usedProfile, string destinationPath, ProgressBar progressBar)
         {
+            progressBar.Minimum = 0;
+            progressBar.Maximum = filesToBeConverted.Count;
+            progressBar.Step = 1;
+            progressBar.Value = 0;
+
             string profileFolder = usedProfile.name;
             foreach (ImageFilePathUtil file in filesToBeConverted)
             {
@@ -42,6 +48,7 @@ namespace PhotoBombXL
                     {
                         image.Save(extentionlessFilePath + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
                     }
+                    progressBar.PerformStep();
                 }
             }
         }
