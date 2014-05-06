@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace PhotoBombXL
 {
@@ -26,6 +27,10 @@ namespace PhotoBombXL
                     string extentionlessFilePath = destinationPath + "\\" + profileFolder + "\\" + file.nameWithoutExtension;
                     Image image = Image.FromFile(file.fullPath);
                     System.IO.Directory.CreateDirectory(destinationPath + "\\" + profileFolder);
+
+                    // resizing the image
+                    Size newSize = new Size(usedProfile.widthInPixels ==  -1 ? image.Width : usedProfile.widthInPixels, usedProfile.heightInPixels == -1 ? image.Width : usedProfile.heightInPixels);
+                    image = resizeImage(image, newSize);
 
                     // choose which kind of file to convert the image to
                     if (usedProfile.fileType == Profile.fileTypes.GIF)
@@ -70,6 +75,11 @@ namespace PhotoBombXL
                 return true;
             }
             return false;
+        }
+        // used for resizing an image
+        public static Image resizeImage(Image imageToResize, Size size)
+        {
+            return (Image)(new Bitmap(imageToResize, size));
         }
     }
 }
