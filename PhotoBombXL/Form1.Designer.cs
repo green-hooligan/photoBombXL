@@ -66,6 +66,8 @@
             this.btnUncheckAll = new System.Windows.Forms.Button();
             this.chklstFiles = new System.Windows.Forms.CheckedListBox();
             this.btnConvert = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctrPreviewImage)).BeginInit();
             this.SuspendLayout();
@@ -248,9 +250,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(274, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 23;
-            this.label2.Text = "Selected Directory";
+            this.label2.Text = "Profile List";
             // 
             // label3
             // 
@@ -449,6 +451,8 @@
             this.chklstFiles.Size = new System.Drawing.Size(252, 229);
             this.chklstFiles.TabIndex = 37;
             this.chklstFiles.SelectedValueChanged += new System.EventHandler(this.chklstFiles_SelectedIndexChanged);
+            this.chklstFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.chklstFiles_DragDrop);
+            this.chklstFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.chklstFiles_DragEnter);
             // 
             // btnConvert
             // 
@@ -459,11 +463,35 @@
             this.btnConvert.Text = "GoGo";
             this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Location = new System.Drawing.Point(441, 374);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(82, 23);
+            this.btnExport.TabIndex = 38;
+            this.btnExport.Text = "Export Profiles";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.Location = new System.Drawing.Point(441, 345);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(81, 23);
+            this.btnImport.TabIndex = 39;
+            this.btnImport.Text = "Import Profiles";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 441);
+            this.Controls.Add(this.btnImport);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnConvert);
             this.Controls.Add(this.chklstFiles);
             this.Controls.Add(this.btnUncheckAll);
@@ -532,6 +560,8 @@
         private System.Windows.Forms.Button btnSaveProfile;
         private System.Windows.Forms.Button btnEditProfile;
         private System.Windows.Forms.Button btnConvert;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnImport;
     }
 }
 

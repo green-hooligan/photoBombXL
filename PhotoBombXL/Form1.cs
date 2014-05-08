@@ -19,6 +19,8 @@ namespace PhotoBombXL
         private FolderBrowserDialog folderBrowserDialogInputDestination;
         private FolderBrowserDialog folderBrowserDialogOutputDestination;
 
+        private OpenFileDialog openFileDialogImport;
+
         private bool isCreating = true;
 
         public Form1()
@@ -57,6 +59,9 @@ namespace PhotoBombXL
             folderBrowserDialogInputDestination.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures); //use this to set the default folder
             txtSelectDirectory.Text = folderBrowserDialogInputDestination.SelectedPath;
             populateListboxWithImageFiles();
+
+            openFileDialogImport = new OpenFileDialog();
+            openFileDialogImport.Ex = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); //use this to set the default folder
 
             folderBrowserDialogOutputDestination = new FolderBrowserDialog();
             folderBrowserDialogOutputDestination.Description = "Select where to save your converted images";
@@ -412,6 +417,69 @@ namespace PhotoBombXL
             chkDefaultSave_CheckedChanged(sender, e);
 
             populateListboxWithImageFiles();
+        }
+
+        private void chklstFiles_DragEnter(object sender, DragEventArgs e)
+        {
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
+                e.Effect = DragDropEffects.All;
+            //else
+            //    e.Effect = DragDropEffects.None;
+        }
+
+        private void chklstFiles_DragDrop(object sender, DragEventArgs e)
+        {
+            List<string> filepaths = new List<string>();
+            foreach (var s in (string[])e.Data.GetData(DataFormats.FileDrop, false))
+            {
+                if (Directory.Exists(s))
+                {
+                    txtSelectDirectory.Text = s.ToString();
+                }
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Importing profiles will overwrite your current profiles, are you sure you would like to do this?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                if (openFileDialogImport.ShowDialog() == DialogResult.OK)
+                {
+                    string profiles = openFileDialogImport.File;
+
+                    string line = "";
+
+                    try
+                    {
+                        using (StreamReader sr = new StreamReader(profiles))
+                        {
+                            line = sr.ReadToEnd();
+                            Console.WriteLine(line);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error importing file.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    System.IO.File.WriteAllText(Application.UserAppDataPath + "\\ProfileInfo.txt", line);
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Are you sure you'd like to export your profile list?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                System.IO.File.Copy(Application.UserAppDataPath + "\\ProfileInfo.txt", System.Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "\\ProfileInfo.txt");
+            }
         }
     }
 }
