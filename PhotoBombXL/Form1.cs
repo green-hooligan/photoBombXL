@@ -401,7 +401,7 @@ namespace PhotoBombXL
             {
                 MessageBox.Show("No images to convert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
+        }
 
             if (txtSaveDirectory.Text == "")
             {
