@@ -132,5 +132,10 @@ namespace PhotoBombXL
             txtAspectWidth.Text = ((Profile)lstProfileList.SelectedItem).aspectWidth.ToString();
             txtExifMaintained.Text = ((Profile)lstProfileList.SelectedItem).isExifMaintained.ToString();
         }
+
+        private void btnBrowseSelect_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

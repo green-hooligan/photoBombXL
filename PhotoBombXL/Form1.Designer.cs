@@ -252,6 +252,7 @@
             this.btnBrowseSelect.TabIndex = 22;
             this.btnBrowseSelect.Text = "Browse";
             this.btnBrowseSelect.UseVisualStyleBackColor = true;
+            this.btnBrowseSelect.Click += new System.EventHandler(this.btnBrowseSelect_Click);
             // 
             // label2
             // 
