@@ -4,13 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace PhotoBombXL
 {
     class ConverterUtil
     {
-        public static void convertFiles(List<ImageFilePathUtil> filesToBeConverted, Profile usedProfile, string destinationPath)
+        public static void convertFiles(List<ImageFilePathUtil> filesToBeConverted, Profile usedProfile, string destinationPath, ProgressBar progressBar)
         {
+            progressBar.Minimum = 0;
+            progressBar.Maximum = filesToBeConverted.Count;
+            progressBar.Step = 1;
+            progressBar.Value = 0;
+
             string profileFolder = usedProfile.name;
             foreach (ImageFilePathUtil file in filesToBeConverted)
             {
@@ -20,6 +27,10 @@ namespace PhotoBombXL
                     string extentionlessFilePath = destinationPath + "\\" + profileFolder + "\\" + file.nameWithoutExtension;
                     Image image = Image.FromFile(file.fullPath);
                     System.IO.Directory.CreateDirectory(destinationPath + "\\" + profileFolder);
+
+                    // resizing the image
+                    Size newSize = new Size(usedProfile.widthInPixels ==  -1 ? image.Width : usedProfile.widthInPixels, usedProfile.heightInPixels == -1 ? image.Width : usedProfile.heightInPixels);
+                    image = resizeImage(image, newSize);
 
                     // choose which kind of file to convert the image to
                     if (usedProfile.fileType == Profile.fileTypes.GIF)
@@ -42,6 +53,7 @@ namespace PhotoBombXL
                     {
                         image.Save(extentionlessFilePath + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
                     }
+                    progressBar.PerformStep();
                 }
             }
         }
@@ -63,6 +75,11 @@ namespace PhotoBombXL
                 return true;
             }
             return false;
+        }
+        // used for resizing an image
+        public static Image resizeImage(Image imageToResize, Size size)
+        {
+            return (Image)(new Bitmap(imageToResize, size));
         }
     }
 }
